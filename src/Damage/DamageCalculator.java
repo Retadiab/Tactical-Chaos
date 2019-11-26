@@ -12,7 +12,7 @@ public abstract class DamageCalculator {
 
     }
 
-    protected void DamageClaculator( DamageCalculator)
+    protected void DamageClaculator( DamageCalculator s)
     {
 
     }
