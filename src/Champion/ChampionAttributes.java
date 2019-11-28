@@ -10,4 +10,5 @@ public class ChampionAttributes {
     private float MovementSpeed;
     private float CritcalChance;
     private float CritcalDamage;
+    private int GoldCost;
 }
