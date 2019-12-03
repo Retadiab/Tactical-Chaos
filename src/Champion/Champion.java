@@ -13,27 +13,27 @@ public class Champion {
     private ArrayList<DamageCalculator> damageCalculators = new ArrayList<DamageCalculator>();
 //    public Champion c1 = new Champion();
 //    public ArrayList<Champion> champions = new ArrayList<Champion>();
-    private String championName;
-    private String championClass1;
-    private String championClass3;
-    private String championClass2;
+    public String championName;
+    public String championClass1;
+    public String championClass3;
+    public String championClass2;
 
-    private float health ;
-    private float Armor ;
+    public float health ;
+    public float Armor ;
     //private float Mana ;
-    private float MagicResist;
-    private float  VisionRange;
-    private float AttackRange;
-    private float MovementSpeed;
-    private float CriticalChance;
-    private float CriticalDamage;
-    private float AttackDamage;
-    private float ManaStart;
-    private float ManaCost;
-    private int GoldCost;
+    public float MagicResist;
+    public float  VisionRange;
+    public float AttackRange;
+    public float MovementSpeed;
+    public float CriticalChance;
+    public float CriticalDamage;
+    public float AttackDamage;
+    public float ManaStart;
+    public float ManaCost;
+    public int GoldCost;
 
-    private String championAbility;
-    private  int championId;
+    public String championAbility;
+    public  int championId;
      public Champion(){
 
          this.GoldCost=0;
