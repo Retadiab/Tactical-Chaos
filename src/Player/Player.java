@@ -6,9 +6,10 @@ import java.util.ArrayList;
 
 public abstract class Player {
 
-    private Champion currentChampions;
-    ArrayList<Champion> champions = new ArrayList<Champion>();
+    ArrayList<Champion> currentChampions = new ArrayList<Champion>();
     public void PropagateMove(){};
+
+
 
 
 }

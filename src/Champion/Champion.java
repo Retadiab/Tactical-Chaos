@@ -1,7 +1,7 @@
 package Champion;
 
 
-import Damage.DamageCalculator;
+//import Damage.DamageCalculator;
 import Move.Move;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ public class Champion {
 
     private ArrayList<Move> Moves = new ArrayList<Move>();
 //    private Champion Class[];
-    private ArrayList<DamageCalculator> damageCalculators = new ArrayList<DamageCalculator>();
+//    private ArrayList<DamageCalculator> damageCalculators = new ArrayList<DamageCalculator>();
 //    public Champion c1 = new Champion();
 //    public ArrayList<Champion> champions = new ArrayList<Champion>();
     public String championName;
@@ -31,6 +31,7 @@ public class Champion {
     public float ManaStart;
     public float ManaCost;
     public int GoldCost;
+    public int championLevel;
 
     public String championAbility;
     public  int championId;
@@ -95,6 +96,7 @@ public class Champion {
          this.ManaStart =ManaStart1;
          this.ManaCost =ManaCost1;
          this.championAbility = championAbility1;
+         this.championLevel = 1;
 
      }
 
@@ -144,6 +146,7 @@ public class Champion {
         this.ManaCost =ManaCost1;
         this.championAbility = championAbility1;
         this.championId = championId1;
+        this.championLevel=1;
 
     }
 
@@ -168,6 +171,46 @@ public class Champion {
     }
 
 
+    public float getHealth() {
+        return this.health;
+    }
+
+    public void setHealth(float health) {
+        this.health = health;
+    }
+
+    public float getMana() {
+        return this.ManaCost;
+    }
+
+    public void setMana(float mana) {
+        this.ManaCost = mana;
+    }
+
+    public float getMagicR() {
+        return this.MagicResist;
+    }
+
+    public void setMagicR(float magicR) {
+        this.MagicResist = magicR;
+    }
+
+    public float getArmor() {
+        return this.Armor;
+    }
+
+    public void setArmor(float armor) {
+        this.Armor = armor;
+    }
+
+    public void setBasicAttack(float basicAttack) {
+        this.AttackDamage = basicAttack;
+    }
+
+    public float getBasicAttack() {
+        return this.AttackDamage;
+    }
+
     public String toString() {
         return String.format("\t%s \t%s  \t%s  \t%s \t %d \t %f \t %f \t %f\t %f\t %f\t %f  \t %f\t %f\t %f \t %f \t %f \t %s",
 
@@ -187,7 +230,8 @@ public class Champion {
         this.AttackDamage ,
         this.ManaStart,
         this.ManaCost,
-        this.championAbility);
+        this.championAbility,
+                this.championLevel);
     }
 
 //    public static void main(String[] args) {
