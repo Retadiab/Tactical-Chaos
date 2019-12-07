@@ -105,20 +105,21 @@ public class  InGameStore {
 
     }
 
-
-    public static void main(String[] args) {
-        InGameStore  mu = new InGameStore();
-        ArrayList<Champion> championsList= new ArrayList<Champion>();
-
-
-        championsList = mu.championList();
-
-        for(int i = 0 ; i< championsList.size() ; i++) {
-            System.out.println("==============================================");
-            System.out.print(i);
-            System.out.print(championsList.get(i));
-        }
-    }
+//
+//    public static void main(String[] args) {
+//        InGameStore  mu = new InGameStore();
+//        ArrayList<Champion> championsList= new ArrayList<Champion>();
+//
+//
+//        championsList = mu.championList();
+//        System.out.print(championsList.get(2).toInitials());
+//
+////        for(int i = 0 ; i< championsList.size() ; i++) {
+////            System.out.println("==============================================");
+////            System.out.print(i);
+////            System.out.print(championsList.get(i));
+////        }
+//    }
 
 
 

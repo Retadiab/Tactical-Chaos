@@ -10,7 +10,23 @@ public class Squares {
     private int y;
     SquaresState state;
 
-    ArrayList<Champion> championInTheSameSquare = new ArrayList<Champion>();
+    ArrayList<Champion> championsIn = new ArrayList<Champion>();
+
+
+    public ArrayList<Champion> getChampionsIn() {
+        return championsIn;
+    }
+
+    public void setChampionsIn(ArrayList<Champion> championsIn) {
+        this.championsIn = championsIn;
+    }
+
+
+
+
+
+
+
     public SquaresState getState() {
         return state;
     }

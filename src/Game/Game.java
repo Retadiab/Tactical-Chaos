@@ -7,14 +7,15 @@ import Player.ConsolePlayer;
 import Player.AutoPlayer;
 import Player.Player;
 import UnassignedClasses.Planning;
+import UnassignedClasses.Round;
 import UnassignedClasses.RoundManager;
 
 import java.util.ArrayList;
 
 public abstract class Game {
     ArrayList<Player> players = new ArrayList<Player>();
-    protected Arena arena;
-    protected int turnNumber;
+    public Arena arena;
+    public int turnNumber;
     protected int numberOfPlayers;
 
     private GameState gamestate = GameState.startGame ;
@@ -35,18 +36,23 @@ public abstract class Game {
 
 
 
+    public class RoundManager {
+        ArrayList<Round> rounds =new ArrayList<Round>();
+        ArrayList<Player> x = new ArrayList<Player>();
+
+        public RoundManager(ArrayList<Player> x) {
+            this.x = x;
+        }
+
+
+
+        // public PropogateMove(Champion sourceChampion)
+
+    }
 
                 public void GameBegin(){
 
-                while (this.gamestate != GameState.endGame){
 
-//                    RoundManager roundManager = new RoundManager(Player[40]);
-
-                    for(int i=0 ; i<players.size() ; i++){
-
-                        players.get(i);
-                    }
-                }
 
                 }
 
@@ -55,6 +61,8 @@ public abstract class Game {
         for(int i = 1; i < players.size(); i++)
             players.add(new AutoPlayer());
     }
+
+
 
     public void render() {
 

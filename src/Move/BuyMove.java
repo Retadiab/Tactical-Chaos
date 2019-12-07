@@ -27,7 +27,7 @@ public class BuyMove extends Move {
 
         public ArrayList<Champion> performMove(ArrayList<Integer> choice, ArrayList<Champion> TemporalStoreChampions, ArrayList<Champion> storeChampions) {
             ArrayList<Champion> currentChampions = new ArrayList();
-Champion tempChamp = new Champion();
+            Champion tempChamp = new Champion();
                      for (int i = 0; i <choice.size(); i++){
 
                          if(choice.size()>0){

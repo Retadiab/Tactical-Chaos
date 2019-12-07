@@ -1,4 +1,4 @@
 package UnassignedClasses;
 
-public class Round {
+public abstract class Round {
 }

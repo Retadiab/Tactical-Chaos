@@ -3,7 +3,7 @@ package Game;
 import Exceptions.IllegalGameMove;
 import Exceptions.IllegalSquare;
 import Player.ConsolePlayer;
-import Player.Player;
+import Player.*;
 
 import Arena.Arena;
 import java.util.ArrayList;
@@ -14,21 +14,23 @@ public class consoleGame extends Game{
 
 
 
-    consoleGame() {
-        super();
-        this.players = new ArrayList<Player>();
-        this.arena = new Arena();
-        this.scanSettings();
-    }
+
+
+
+
+
     ArrayList<Player> players = new ArrayList<Player>();
-    public void startGame(){
+    public void scanSettings(){
         System.out.println("please enter the number of players ");
         System.out.println("Note : the number must be up to 8 ");
         int numberOfPlayers ;
         numberOfPlayers= numberOfPlayers1.nextInt();
         if(numberOfPlayers > 8 || numberOfPlayers <= 0) {
-            for (int i = 0; i < numberOfPlayers; i++) {
-                ConsolePlayer p = new ConsolePlayer();
+
+            ConsolePlayer p1 = new ConsolePlayer();
+            players.add(p1);
+            for (int i =1; i < numberOfPlayers; i++) {
+                AutoPlayer p = new AutoPlayer();
                 players.add(p);
             }
         }
@@ -45,7 +47,6 @@ public class consoleGame extends Game{
     public void initGame() {
 
         this.initPlayers();
-
         printArena();
         takeTurns();
 
@@ -68,23 +69,20 @@ public class consoleGame extends Game{
     }
 
 
-//    public Game(Arena arena, int playersNumber) {
-//        this.arena = arena;
-//        for (int i = 0; i < playersNumber; i++) {
-//            players.add(new ConsolePlayer());
+
+//
+//    public void scanSettings() {
+//
+//        this.numberOfPlayers= numberOfPlayers1.nextInt();
+//         Scanner numberOfPlayers2 =new Scanner(System.in);
+//
+//        this.numberOfPlayers = numberOfPlayers2.nextInt();
+//        while(this.numberOfPlayers > 8 || this.numberOfPlayers < 2) {
+//            System.err.println("Number of players is invalid");
+//            this.numberOfPlayers = numberOfPlayers2.nextInt();
+//        }
+//
+//
 //    }
-//    }
-
-    public void scanSettings() {
-
-        this.numberOfPlayers= numberOfPlayers1.nextInt();
-         Scanner numberOfPlayers2 =new Scanner(System.in);
-
-        this.numberOfPlayers = numberOfPlayers2.nextInt();
-        while(this.numberOfPlayers > 8 || this.numberOfPlayers < 2) {
-            System.err.println("Number of players is invalid");
-            this.numberOfPlayers = numberOfPlayers2.nextInt();
-        }
-    }
 
 }

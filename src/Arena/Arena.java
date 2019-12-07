@@ -4,20 +4,22 @@ import UnassignedClasses.Squares;
 
 import java.util.ArrayList;
 
-public class Arena {
+public  class Arena {
     static Squares[][] squares;
     int arenaSize= 100;
 
-
-
+    SquaresState State;
 
 
 
     public Arena() {
-        squares = new Squares[arenaSize][arenaSize];
-        for (int i = 0; i < arenaSize; i++) {
+       squares = new Squares[arenaSize][arenaSize];
+
+       for (int i = 0; i < arenaSize; i++) {
             for (int j = 0; j < arenaSize; j++) {
                 this.squares[i][j] = new Squares();
+                this.squares[i][j].setState(State.Free);
+
             }
         }
     }
@@ -28,9 +30,24 @@ public class Arena {
         {
             for(int j = 0; j < 25; j++)
             {
-                System.out.printf("[###]", squares[i][j]);
+
+            if(squares[i][j].getState() == State.Free)
+                System.out.print("[###]");
+
+            else{
+
+                for(int k= 0 ; k<squares[i][j].getChampionsIn().size() ; k++)
+
+                System.out.println(squares[i][j].getChampionsIn().get(k).toInitials());
+
             }
-        }    }
+
+
+            }
+            System.out.println();
+        }
+
+    }
 
 
     public Squares getSquare(int i, int j) {

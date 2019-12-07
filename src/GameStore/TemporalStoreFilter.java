@@ -94,11 +94,11 @@ public class TemporalStoreFilter extends StoreFilter {
                 break;
             }
             else if(pickedChampion >5 || pickedChampion<0){
-                System.out.println("please enter a number between 1 -> 5 ");
+                System.out.println("Please enter a number between 1 -> 5 ");
             }
             else if(championChoices.contains(pickedChampion)){
 
-                System.out.println("You have Already choose this Champion , Pleas Pick Another One.. ");
+                System.out.println("You have Already chosen this Champion , Please Pick Another One.. ");
             }
             else{
                 championChoices.add(pickedChampion);
@@ -134,8 +134,8 @@ public class TemporalStoreFilter extends StoreFilter {
 
 
 
-//    public static void main(String[] args) {
-//        TemporalStoreFilter Store = new TemporalStoreFilter();
-//        Store.GetOnly(5);
-//    }
+    public static void main(String[] args) {
+        TemporalStoreFilter Store = new TemporalStoreFilter();
+        Store.GetOnly(5);
+    }
 }

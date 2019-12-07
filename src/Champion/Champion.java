@@ -234,10 +234,21 @@ public class Champion {
                 this.championLevel);
     }
 
+
+
+    public String toInitials() {
+        return String.format("%s%d",
+                this.championName.substring(0,2),
+                          this.championLevel);
+    }
+
+//
 //    public static void main(String[] args) {
 //        Champion c = new Champion();
 //        c.toString();
 //        System.out.println(c.toString());
+////        String oday = new String();
+////        oday = "Oday";
 //    }
 
 }
