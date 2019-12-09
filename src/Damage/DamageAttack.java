@@ -1,5 +1,5 @@
 package Damage;
-
+import Champion.*;
 public class DamageAttack implements IDamage {
 
     @Override

@@ -1,5 +1,5 @@
 package Damage;
-
+import Champion.* ;
 public class Level {
 // make champion level 2
     public void Level2 (Champion champion)  {

@@ -20,7 +20,6 @@ public class Champion {
 
     public float health ;
     public float Armor ;
-    //private float Mana ;
     public float MagicResist;
     public float  VisionRange;
     public float AttackRange;
@@ -32,6 +31,9 @@ public class Champion {
     public float ManaCost;
     public int GoldCost;
     public int championLevel;
+    private float Mana;
+    public int x ;
+    public int y ;
 
     public String championAbility;
     public  int championId;
@@ -53,7 +55,7 @@ public class Champion {
          this.championClass1 = null;
          this.championClass2 = null;
          this.championClass3 = null;
-
+         this.Mana=this.ManaStart;
 
      }
      public Champion(
@@ -96,6 +98,8 @@ public class Champion {
          this.ManaStart =ManaStart1;
          this.ManaCost =ManaCost1;
          this.championAbility = championAbility1;
+         this.Mana=this.ManaStart;
+
          this.championLevel = 1;
 
      }
@@ -146,6 +150,7 @@ public class Champion {
         this.ManaCost =ManaCost1;
         this.championAbility = championAbility1;
         this.championId = championId1;
+        this.Mana=this.ManaStart;
         this.championLevel=1;
 
     }
@@ -180,11 +185,11 @@ public class Champion {
     }
 
     public float getMana() {
-        return this.ManaCost;
+        return this.Mana;
     }
 
     public void setMana(float mana) {
-        this.ManaCost = mana;
+        this.Mana = mana;
     }
 
     public float getMagicR() {
@@ -239,7 +244,7 @@ public class Champion {
     public String toInitials() {
         return String.format("%s%d",
                 this.championName.substring(0,2),
-                          this.championLevel);
+                      this.championLevel);
     }
 
 //

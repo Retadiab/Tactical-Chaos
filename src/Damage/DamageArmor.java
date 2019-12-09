@@ -1,5 +1,5 @@
 package Damage;
-
+import Champion.*;
 public class DamageArmor extends DamageDecorator {
     public DamageArmor(IDamage damage) {
         super(damage);

@@ -10,6 +10,12 @@ public class Squares {
     private int y;
     SquaresState state;
 
+    public Squares(int i , int j ) {
+        x = i ;
+        y = j ;
+
+    }
+
     ArrayList<Champion> championsIn = new ArrayList<Champion>();
 
 

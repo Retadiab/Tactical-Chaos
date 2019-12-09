@@ -1,7 +1,7 @@
 package Damage;
+import Champion.*;
 
-
-public class DamagecalculatorFactory {
+public class DamageCalculatorFactory {
     /*
    1-Damage to the health without shield
    2-Damage to the health with Armor
