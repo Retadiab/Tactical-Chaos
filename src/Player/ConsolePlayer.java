@@ -9,6 +9,16 @@ public  class ConsolePlayer extends Player {
     ArrayList<Champion> currentChampions = new ArrayList<Champion>();
     int PlayerIndex;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    String name;
+
 
 
     public int getIndex() {

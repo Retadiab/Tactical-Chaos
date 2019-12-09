@@ -1,11 +1,15 @@
 package Game;
 
+import Champion.Champion;
 import Exceptions.IllegalGameMove;
 import Exceptions.IllegalSquare;
 import Player.ConsolePlayer;
 import Player.*;
 
 import Arena.Arena;
+import UnassignedClasses.Planning;
+import UnassignedClasses.Round;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -20,35 +24,18 @@ public class consoleGame extends Game{
 
 
     ArrayList<Player> players = new ArrayList<Player>();
-    public void scanSettings(){
-        System.out.println("please enter the number of players ");
-        System.out.println("Note : the number must be up to 8 ");
-        int numberOfPlayers ;
-        numberOfPlayers= numberOfPlayers1.nextInt();
-        if(numberOfPlayers > 8 || numberOfPlayers <= 0) {
 
-            ConsolePlayer p1 = new ConsolePlayer();
-            players.add(p1);
-            for (int i =1; i < numberOfPlayers; i++) {
-                AutoPlayer p = new AutoPlayer();
-                players.add(p);
-            }
-        }
-        else
-        {
-            System.out.println("please enter a right Number >>> ");
-        }
-
-
-
-    }
 
     @Override
     public void initGame() {
 
-        this.initPlayers();
-        printArena();
-        takeTurns();
+        this.players = this.initPlayers();
+        this.arena = new Arena();
+//        printArena();
+        TacticalChaosTM t = new TacticalChaosTM(this.players);
+
+
+//        takeTurns(this.players);
 
     }
 
@@ -64,10 +51,57 @@ public class consoleGame extends Game{
     }
 
     @Override
-    public void takeTurns() {
+    public Player takeTurns(ArrayList<Player> players) {
+
+        return getRandomPlayer(players);
 
     }
 
+
+
+
+    public  class TacticalChaosTM extends RoundManager {
+
+        ArrayList<Round> rounds =new ArrayList<Round>();
+        ArrayList<Player> x = new ArrayList<Player>();
+        public void PropagateMove(Champion sourceChampion , Champion targetChampion ){
+            gamestate= GameState.startGame;
+
+
+
+        }
+
+
+        public TacticalChaosTM(ArrayList<Player> x) {
+            this.x = x;
+            ArrayList<Player> tempPlayers = new ArrayList<Player>();
+            tempPlayers = this.x;
+
+            while (tempPlayers.size()!=0){
+            Player currentPlayer = takeTurns(tempPlayers);
+//            System.out.println(currentPlayer);
+            tempPlayers.remove(currentPlayer);
+
+
+                Planning planningPhase1 = new Planning();
+
+                planningPhase1.getChampionChoiceFromPhase1(planningPhase1.printPlanningListPhase1(),currentPlayer,arena);
+
+                rounds.add(planningPhase1);
+//            System.out.println(tempPlayers);
+//            ApplyMove(currentPlayer);
+
+
+            }
+        }
+
+        public TacticalChaosTM() {
+
+
+        }
+
+
+    }
 
 
 //
@@ -85,4 +119,8 @@ public class consoleGame extends Game{
 //
 //    }
 
+
+    public static void main(String[] args) {
+        consoleGame c = new consoleGame();
+    }
 }
