@@ -10,6 +10,7 @@ package UnassignedClasses;
 
 
 import Arena.Arena;
+import GameStore.TemporalStoreFilter;
 import  Player.*;
 import Champion.Champion;
 import Move.*;
@@ -57,7 +58,7 @@ public class Planning extends Round{
 
 
     }
-    public void getChampionChoiceFromPhase1(int userChoice , ConsolePlayer p, Arena arena){
+    public void getChampionChoiceFromPhase1(int userChoice , Player p, Arena arena){
 
 
         switch (userChoice) {
@@ -66,12 +67,16 @@ public class Planning extends Round{
             {
 
                 BuyMove move1 = new BuyMove();
-//                move1.performMove
+                System.out.println("Buying move must be running right now");
+                break;
 
             }
 
             case (2):
             {
+
+                System.out.println("Placing move must be running right now");
+
 
                 if(p.getCurrentChampions().size()==0){
 
@@ -95,6 +100,7 @@ public class Planning extends Round{
                    move2.placeMove(xCoor,yCoor,(p.getCurrentChampions().get(indexOfChosenChampion)),arena);
 
                 }
+                break;
             }
 
             default:
@@ -108,30 +114,59 @@ public class Planning extends Round{
 
 
 
-    public void getChampionChoiceFromPhase2(int userChoice ,ConsolePlayer player){
+    public void getChampionChoiceFromPhase2(int userChoice ,Player player, Arena arena){
 
 
         switch (userChoice) {
 
-            case (1):
-
-
+            case (1): {
                 SellMove move1 = new SellMove();
+                System.out.println("Selling move must be running right now");
+
+                break;
+            }
 
 
-            case (2):
+
+
+            case (2): {
                 BuyMove move2 = new BuyMove();
+                System.out.println("Buying move must be running right now");
+                TemporalStoreFilter tempStore = new TemporalStoreFilter();
 
-            case (3):
+                tempStore.doBuying(5);
+                ///////the doBuying method returns an array of champions that needs to be added to bench list and the player's champion list
+                //and then when the player do the place move the champion must be removed from the bench list and added to current champions on the battlefield
+
+
+
+                break;
+
+
+            }
+            case (3): {
+
+
                 WalkMove move3 = new WalkMove();
+                System.out.println("Walking move must be running right now");
 
-            case (4):
+                break;
+
+
+            }
+            case (4): {
 
                 BasicAttackMove move4 = new BasicAttackMove();
+                System.out.println("BasicAttack move must be running right now");
 
+                break;
+
+
+            }
             case (5):
             {
-
+                System.out.println("UsingAbilities move must be running right now");
+                System.out.println("==========================================================");
 
                 System.out.println("Please enter ID of one of your champions : ");
                 System.out.println("your champion list is : ");
@@ -151,7 +186,7 @@ public class Planning extends Round{
 
 
 
-
+                break;
 
 
 
@@ -159,7 +194,7 @@ public class Planning extends Round{
             }
             default:
                 System.out.println("Please enter a right number");
-
+                break;
 
 
         }

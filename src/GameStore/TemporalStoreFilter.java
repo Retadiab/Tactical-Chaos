@@ -114,7 +114,7 @@ public class TemporalStoreFilter extends StoreFilter {
 
 
 
-    public boolean doBuying(int championsNumber ){
+    public ArrayList<Champion> doBuying(int championsNumber ){
 
          BuyMove buying = new BuyMove();
          ArrayList<Champion> CurrentChampions =new ArrayList<Champion>();
@@ -122,10 +122,10 @@ public class TemporalStoreFilter extends StoreFilter {
          TemporalStoreFilter tempStore = new TemporalStoreFilter();
          choices= tempStore.GetOnly(championsNumber);
          CurrentChampions =  buying.performMove(choices,championsForTempStore1,championsForTempStore);
-         System.out.println("================================="+CurrentChampions);
+//         System.out.println("================================="+CurrentChampions);
 
 
-             return true;
+             return CurrentChampions;
     }
 
 
@@ -136,6 +136,6 @@ public class TemporalStoreFilter extends StoreFilter {
 
     public static void main(String[] args) {
         TemporalStoreFilter Store = new TemporalStoreFilter();
-        Store.GetOnly(5);
+        Store.doBuying(5);
     }
 }
