@@ -14,7 +14,7 @@ public  class Arena {
 
        for (int i = 0; i < arenaSize; i++) {
             for (int j = 0; j < arenaSize; j++) {
-                this.squares[i][j] = new Squares();
+                this.squares[i][j] = new Squares(i,j);
                 this.squares[i][j].setState(State.Free);
 
             }

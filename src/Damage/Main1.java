@@ -1,5 +1,5 @@
 package Damage;
-
+import Champion.*;
 
 public class Main1 {
 
@@ -24,7 +24,7 @@ public class Main1 {
 //        System.out.println(champion3.getMana());
 for (int i=1 ; i < 5 ; i++) {
     champion4.setHealth(100);
-    DamagecalculatorFactory.creatDamageCalculator(champion4, i, 10);
+    DamageCalculatorFactory.creatDamageCalculator(champion4, i, 10);
     System.out.println(champion4.getHealth());
     System.out.println(champion4.getMana());
 
