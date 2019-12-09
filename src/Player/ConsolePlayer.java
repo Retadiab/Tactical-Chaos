@@ -1,12 +1,31 @@
 package Player;
 
 import Champion.Champion;
+import GameStore.Bench;
 
 import java.util.ArrayList;
 
 public  class ConsolePlayer extends Player {
 
+
+
+    Bench playerBench = new Bench();
     ArrayList<Champion> currentChampions = new ArrayList<Champion>();
+
+    public ArrayList<Champion> getBenchChampions() {
+        return playerBench.getBenchChampions();
+    }
+
+
+
+    public ArrayList<Champion> setBenchChampions(ArrayList<Champion> benchChampions) {
+
+        ArrayList<Champion> benchChampions1 = new ArrayList<Champion>();
+        playerBench.setBenchChampions(benchChampions);
+        return benchChampions1;
+    }
+
+
     int PlayerIndex;
 
     public String getName() {

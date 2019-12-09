@@ -1,11 +1,9 @@
 package GameStore;
 
 import Champion.Champion;
-import UnassignedClasses.ReadFileLineByLineUsingBufferedReader;
 
 import java.util.ArrayList;
 
-import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
 
 public class ChampionClassFilter extends StoreFilter {

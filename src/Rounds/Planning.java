@@ -5,17 +5,17 @@
 //    public void GetTemporalList(){};
 //
 //}
-package UnassignedClasses;
+package Rounds;
 
 
 
 import Arena.Arena;
 import GameStore.TemporalStoreFilter;
-import  Player.*;
 import Champion.Champion;
 import Move.*;
 import Player.Player;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Planning extends Round{
@@ -32,7 +32,6 @@ public class Planning extends Round{
 
     public int printPlanningListPhase1(){
 
-        System.out.println("Welcome to Phase 1, please choose your movement: ");
         System.out.println("1- Buy champions.");
         System.out.println("2- Place your champions.");
         System.out.println("Your choice is: ");
@@ -66,7 +65,11 @@ public class Planning extends Round{
             case (1):
             {
 
+                ArrayList<Champion> addedChampions = new ArrayList<Champion>();
                 BuyMove move1 = new BuyMove();
+                addedChampions = move1.doBuying(5);
+//                System.out.println(addedChampions);
+                p.setCurrentChampions(addedChampions);
                 System.out.println("Buying move must be running right now");
                 break;
 
@@ -98,6 +101,7 @@ public class Planning extends Round{
 
                     PlaceMove move2  = new PlaceMove();
                    move2.placeMove(xCoor,yCoor,(p.getCurrentChampions().get(indexOfChosenChampion)),arena);
+
 
                 }
                 break;
@@ -134,8 +138,8 @@ public class Planning extends Round{
                 System.out.println("Buying move must be running right now");
                 TemporalStoreFilter tempStore = new TemporalStoreFilter();
 
-                tempStore.doBuying(5);
-                ///////the doBuying method returns an array of champions that needs to be added to bench list and the player's champion list
+//                tempStore.doBuying(5);
+                //the doBuying method returns an array of champions that needs to be added to bench list and the player's champion list
                 //and then when the player do the place move the champion must be removed from the bench list and added to current champions on the battlefield
 
 

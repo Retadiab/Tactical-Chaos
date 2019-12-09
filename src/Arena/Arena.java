@@ -1,8 +1,5 @@
 package Arena;
 
-import UnassignedClasses.Squares;
-
-import java.util.ArrayList;
 
 public  class Arena {
     static Squares[][] squares;

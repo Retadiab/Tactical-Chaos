@@ -1,29 +1,12 @@
 package Move;
 
 import Champion.Champion;
+import GameStore.TemporalStoreFilter;
 import Player.Player;
 
 import java.util.ArrayList;
 
 public class BuyMove extends Move {
-//
-//    public ArrayList<Champion> performMove(ArrayList<Integer> index, ArrayList<Integer> choice, ArrayList<Champion> TemporarStoreChampions) {
-//        ArrayList<Champion> currentChampions = new ArrayList();
-//        for (int i = 3; i >= 0; i--)
-//            if (if_exists(i, choice))
-//                index.remove(i);
-//        index = sort(index);
-//        for (int i = 3; i >= 0 && i < TemporarStoreChampions.size(); i--)
-//            if (!if_exists(i, index)) {
-//                currentChampions.add(TemporarStoreChampions.get(i));
-//                TemporarStoreChampions.remove(i);
-//            }
-//        return currentChampions;
-//    }
-//
-//    private boolean if_exists(int i, ArrayList<Integer> choice) {
-//    }
-
 
         public ArrayList<Champion> performMove(ArrayList<Integer> choice, ArrayList<Champion> TemporalStoreChampions, ArrayList<Champion> storeChampions) {
             ArrayList<Champion> currentChampions = new ArrayList();
@@ -45,7 +28,23 @@ public class BuyMove extends Move {
 
         }
 
+    public ArrayList<Champion> doBuying(int championsNumber ){
 
+        BuyMove buying = new BuyMove();
+        ArrayList<Champion> CurrentChampions =new ArrayList<Champion>();
+        ArrayList<Integer> choices = new ArrayList<Integer>();
+        TemporalStoreFilter tempStore = new TemporalStoreFilter();
+        choices= tempStore.GetOnly(championsNumber);
+        CurrentChampions =  buying.performMove(choices,tempStore.getChampionsForTempStore1(),tempStore.getChampionsForTempStore());
+         System.out.println("================================="+CurrentChampions);
+        return CurrentChampions;
+    }
+
+
+    public static void main(String[] args) {
+        BuyMove mo = new BuyMove();
+        mo.doBuying(5);
+    }
 
 
 }

@@ -14,13 +14,22 @@ public class TemporalStoreFilter extends StoreFilter {
     static Scanner pickedChampionScanner =new Scanner(System.in);
 
 
+    public  ArrayList<Champion> getChampionsForTempStore() {
+        return championsForTempStore;
+    }
+
+
+
     //championsForTempStore has got the 10 copies of each champion ,
-   static ArrayList<Champion> championsForTempStore =new ArrayList<Champion>();
+    ArrayList<Champion> championsForTempStore =new ArrayList<Champion>();
 
 
+    public  ArrayList<Champion> getChampionsForTempStore1() {
+        return championsForTempStore1;
+    }
 
     //championsForTempStore1 getting random 5 elements from the championsForTempStore tah got 10 copies  ,
-    static ArrayList<Champion> championsForTempStore1 =new ArrayList<Champion>();
+     ArrayList<Champion> championsForTempStore1 =new ArrayList<Champion>();
 
 
 
@@ -50,7 +59,7 @@ public class TemporalStoreFilter extends StoreFilter {
 
 
     //this method is for getting the choices from Player and store them in Arraylist of integers
-    ArrayList<Integer> GetOnly(int championsNumber) {
+    public ArrayList<Integer> GetOnly(int championsNumber) {
 
 
         championsListFromStore = GetChampionsList();
@@ -114,19 +123,6 @@ public class TemporalStoreFilter extends StoreFilter {
 
 
 
-    public ArrayList<Champion> doBuying(int championsNumber ){
-
-         BuyMove buying = new BuyMove();
-         ArrayList<Champion> CurrentChampions =new ArrayList<Champion>();
-         ArrayList<Integer> choices = new ArrayList<Integer>();
-         TemporalStoreFilter tempStore = new TemporalStoreFilter();
-         choices= tempStore.GetOnly(championsNumber);
-         CurrentChampions =  buying.performMove(choices,championsForTempStore1,championsForTempStore);
-//         System.out.println("================================="+CurrentChampions);
-
-
-             return CurrentChampions;
-    }
 
 
 
@@ -136,6 +132,6 @@ public class TemporalStoreFilter extends StoreFilter {
 
     public static void main(String[] args) {
         TemporalStoreFilter Store = new TemporalStoreFilter();
-        Store.doBuying(5);
+        Store.GetOnly(5);
     }
 }

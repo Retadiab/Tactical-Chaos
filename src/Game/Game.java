@@ -7,8 +7,8 @@ import Exceptions.IllegalSquare;
 import Player.ConsolePlayer;
 import Player.AutoPlayer;
 import Player.Player;
-import UnassignedClasses.Planning;
-import UnassignedClasses.Round;
+import Rounds.Planning;
+import Rounds.Round;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -34,6 +34,17 @@ public abstract class Game {
 //        System.out.println(items.get(this.IndexToDelete));
 
         System.out.println("The Game choose Player "+(this.IndexToDelete+1 )+ "  to start >>>>>>>>>>>>");
+        if(this.IndexToDelete == 0){
+
+            System.out.println("Please enter your NAME: ");
+            String playerName = new String();
+            playerName= PlayerName.nextLine();
+//            System.out.println(playerName);
+            items.get(0).setName(playerName);
+
+        }
+
+
 
         return items.get(this.IndexToDelete);
     }
@@ -70,6 +81,7 @@ public abstract class Game {
                     Planning planningPhase1 = new Planning();
 
                     planningPhase1.getChampionChoiceFromPhase1(planningPhase1.printPlanningListPhase1(),currentPlayer,arena);
+
 
                      rounds.add(planningPhase1);
 
@@ -126,11 +138,7 @@ public abstract class Game {
 
             ConsolePlayer p1 = new ConsolePlayer();
             players.add(p1);
-            System.out.println("Please enter your NAME: ");
-            String playerName = new String();
-            playerName= PlayerName.nextLine();
-            System.out.println(playerName);
-            p1.setName(playerName);
+
 
             for (int i =1; i < numberOfPlayers; i++) {
                 AutoPlayer p = new AutoPlayer();

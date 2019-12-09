@@ -1,4 +1,4 @@
-package UnassignedClasses;
+package Arena;
 
 import Arena.SquaresState;
 import Champion.Champion;

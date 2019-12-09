@@ -3,12 +3,11 @@ package Game;
 import Champion.Champion;
 import Exceptions.IllegalGameMove;
 import Exceptions.IllegalSquare;
-import Player.ConsolePlayer;
 import Player.*;
 
 import Arena.Arena;
-import UnassignedClasses.Planning;
-import UnassignedClasses.Round;
+import Rounds.Planning;
+import Rounds.Round;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -78,16 +77,26 @@ public class consoleGame extends Game{
             tempPlayers = this.x;
 
             while (tempPlayers.size()!=0){
-            Player currentPlayer = takeTurns(tempPlayers);
+                Player currentPlayer = takeTurns(tempPlayers);
+
+                int counter = 0;
+                System.out.println("Welcome to Phase 1, please choose your movement: ");
+                while(counter <= 9 ){
+
+                    Planning planningPhase1 = new Planning();
+
+                    planningPhase1.getChampionChoiceFromPhase1(planningPhase1.printPlanningListPhase1(),currentPlayer,arena);
+
+                    rounds.add(planningPhase1);
+                    counter++;
+                    System.out.println("Phase 1 is still running, please choose your movement: ");
+
+                }
 //            System.out.println(currentPlayer);
             tempPlayers.remove(currentPlayer);
 
 
-                Planning planningPhase1 = new Planning();
 
-                planningPhase1.getChampionChoiceFromPhase1(planningPhase1.printPlanningListPhase1(),currentPlayer,arena);
-
-                rounds.add(planningPhase1);
 //            System.out.println(tempPlayers);
 //            ApplyMove(currentPlayer);
 
