@@ -25,24 +25,30 @@ public abstract class Game {
     public  static Random r =new Random();
 
     public GameState gamestate = GameState.startGame ;
+
+
+
+
+
     private int IndexToDelete = 0 ;
 
 
     public  Player getRandomPlayer(ArrayList<Player> items) {
         this.IndexToDelete = new Random().nextInt(items.size());
+        Player p = items.get(this.IndexToDelete);
 //        System.out.println(this.IndexToDelete);
 //        System.out.println(items.get(this.IndexToDelete));
 
-        System.out.println("The Game choose Player "+(this.IndexToDelete+1 )+ "  to start >>>>>>>>>>>>");
-        if(this.IndexToDelete == 0){
-
-            System.out.println("Please enter your NAME: ");
-            String playerName = new String();
-            playerName= PlayerName.nextLine();
-//            System.out.println(playerName);
-            items.get(0).setName(playerName);
-
-        }
+//        if(this.IndexToDelete == 0){
+//
+//            //something wrong !!!!!!!!!!!
+//            System.out.println("Please enter your NAME: ");
+//            String playerName = new String();
+//            playerName= PlayerName.nextLine();
+////            System.out.println(playerName);
+//            items.get(0).setName(playerName);
+//
+//        }
 
 
 
@@ -54,10 +60,15 @@ public abstract class Game {
         this.turnNumber = 0;
         gamestate= GameState.startGame;
     }
-
+    public int getIndexOfPlayerToPrintItWithArena() {
+        return IndexToDelete;
+    }
     abstract public void initGame();
 
-    abstract public void printArena();
+    public void printArena(Player p){
+                            arena.printArena(p,null);
+
+    }
     abstract public void ApplyMove(Player p) throws IllegalSquare, IllegalGameMove;
     abstract public Player takeTurns(ArrayList<Player> players);
 
@@ -66,7 +77,7 @@ public abstract class Game {
 
     public abstract class RoundManager {
         ArrayList<Round> rounds =new ArrayList<Round>();
-        ArrayList<Player> x = new ArrayList<Player>();
+        public  ArrayList<Player> x = new ArrayList<Player>();
 
         public RoundManager(ArrayList<Player> x) {
             this.x = x;
@@ -77,10 +88,11 @@ public abstract class Game {
 
                 if( rounds.size()<9){
                     Player currentPlayer = takeTurns(this.x);
+                    System.out.println("The Game choose Player "+ (this.x.indexOf(currentPlayer)+1)+"  to start >>>>>>>>>>>>");
 
                     Planning planningPhase1 = new Planning();
 
-                    planningPhase1.getChampionChoiceFromPhase1(planningPhase1.printPlanningListPhase1(),currentPlayer,arena);
+                    planningPhase1.getChampionChoiceFromPhase1(planningPhase1.printPlanningListPhase1(),currentPlayer,arena, this.x);
 
 
                      rounds.add(planningPhase1);
@@ -90,7 +102,7 @@ public abstract class Game {
 
                     Player currentPlayer = takeTurns(this.x);
                     Planning planningPhase2 = new Planning();
-                    planningPhase2.getChampionChoiceFromPhase2(planningPhase2.printPlanningListPhase2(),currentPlayer,arena);
+                    planningPhase2.getChampionChoiceFromPhase2(planningPhase2.printPlanningListPhase2(),currentPlayer,arena,getIndexOfPlayerToPrintItWithArena());
                     //how many times the champion could make a plane >> and when should i do the execute move ??
                     //mbye there is no time limited for the planning such ass when he want to end plannig he could press any button to end the planning phase and then directly i could make the execute for planning
 
@@ -127,7 +139,7 @@ public abstract class Game {
         System.out.println("Note : the number must be up to 8 ");
         int numberOfPlayers ;
         numberOfPlayers= numberOfPlayers1.nextInt();
-        if(numberOfPlayers > 8 || numberOfPlayers <= 0) {
+        if(numberOfPlayers > 8 || numberOfPlayers <= 1) {
             System.out.println("please enter a right Number >>> ");
 
 
@@ -137,15 +149,20 @@ public abstract class Game {
 
 
             ConsolePlayer p1 = new ConsolePlayer();
+            p1.setIndex(1);
+//            System.out.println("player1 index"+p1.getIndex());
             players.add(p1);
 
 
-            for (int i =1; i < numberOfPlayers; i++) {
+            for (int i =2; i <=numberOfPlayers; i++) {
                 AutoPlayer p = new AutoPlayer();
+                p.setPlayerIndex(i);
+//                System.out.println("player1 index"+p.getPlayerIndex());
+
                 players.add(p);
             }
         }
-//        System.out.println(players);
+        System.out.println("players from inital"+players);
 
         return this.players;
 

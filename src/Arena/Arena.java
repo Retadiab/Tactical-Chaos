@@ -1,8 +1,24 @@
 package Arena;
 
 
+import Player.Player;
+
+import java.util.ArrayList;
+
 public  class Arena {
+    public static Squares[][] getSquares() {
+        return squares;
+    }
+
+    public static void setSquares(Squares[][] squares) {
+        Arena.squares = squares;
+    }
+
     static Squares[][] squares;
+    public void setArenaSize(int arenaSize) {
+        this.arenaSize = arenaSize;
+    }
+
     int arenaSize= 100;
 
     SquaresState State;
@@ -21,7 +37,7 @@ public  class Arena {
         }
     }
 
-    public void printArena(){
+    public void printArena(Player p , ArrayList<Player> p1){
 
         for(int i = 0; i < 25; i++)
         {
@@ -35,7 +51,7 @@ public  class Arena {
 
                 for(int k= 0 ; k<squares[i][j].getChampionsIn().size() ; k++)
 
-                System.out.println(squares[i][j].getChampionsIn().get(k).toInitials());
+                System.err.print("["+squares[i][j].getChampionsIn().get(k).toInitials()+"P"+(p.getPlayerIndex())+"]");
 
             }
 
@@ -51,15 +67,20 @@ public  class Arena {
         return this.squares[i][j];
     }
 
+    public void setSquares(int i, int j) {
+        this.squares[i][j].setX(i);
+
+    }
+
     public int getArenaSize() {
         return this.arenaSize;
     }
 
 
-    public static void main(String[] args) {
-        Arena a =new Arena();
-        a.printArena();
-    }
+//    public static void main(String[] args) {
+//        Arena a =new Arena();
+//        a.printArena();
+//    }
 
 
 }

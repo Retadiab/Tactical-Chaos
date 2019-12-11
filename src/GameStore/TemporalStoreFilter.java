@@ -60,8 +60,7 @@ public class TemporalStoreFilter extends StoreFilter {
 
     //this method is for getting the choices from Player and store them in Arraylist of integers
     public ArrayList<Integer> GetOnly(int championsNumber) {
-
-
+        this.championChoices.clear();
         championsListFromStore = GetChampionsList();
         int championList = 47, copyOfEachChampionInMainStore = 10;
         ArrayList <Champion> mainstore;
@@ -81,9 +80,9 @@ public class TemporalStoreFilter extends StoreFilter {
             championsForTempStore1.add(getRandomChestItem(championsForTempStore));
           IndexesToDelete.add(this.IndexToDelete);
 
-
+            System.out.print(i1+1+"||\t");
             System.out.println(championsForTempStore1.get(i1));
-            System.out.println("==============================================");
+            System.out.println("===================================================================================================");
         }
 
 
@@ -107,7 +106,7 @@ public class TemporalStoreFilter extends StoreFilter {
             }
             else if(championChoices.contains(pickedChampion)){
 
-                System.out.println("You have Already chosen this Champion , Please Pick Another One.. ");
+                System.err.println("You have Already chosen this Champion , Please Pick Another One.. ");
             }
             else{
                 championChoices.add(pickedChampion);
@@ -117,7 +116,8 @@ public class TemporalStoreFilter extends StoreFilter {
                 counter = counter+1;}
                }
 
-        System.out.println(championChoices);
+//        System.out.println(championChoices);
+
         return championChoices;
     }
 
@@ -134,4 +134,6 @@ public class TemporalStoreFilter extends StoreFilter {
         TemporalStoreFilter Store = new TemporalStoreFilter();
         Store.GetOnly(5);
     }
+
+
 }

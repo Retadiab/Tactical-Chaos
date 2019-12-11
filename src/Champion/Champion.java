@@ -40,7 +40,7 @@ public class Champion {
      public Champion(){
 
          this.GoldCost=0;
-         this.health=0;
+         this.health=1;
          this.Armor=0;
          this.MagicResist=0;
          this.VisionRange=0;
@@ -246,6 +246,8 @@ public class Champion {
                 this.championName.substring(0,2),
                       this.championLevel);
     }
+
+
 
 //
 //    public static void main(String[] args) {

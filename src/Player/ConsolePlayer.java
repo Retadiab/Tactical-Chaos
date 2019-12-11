@@ -12,6 +12,16 @@ public  class ConsolePlayer extends Player {
     Bench playerBench = new Bench();
     ArrayList<Champion> currentChampions = new ArrayList<Champion>();
 
+    public ArrayList<Champion> getArenaChampions() {
+        return arenaChampions;
+    }
+
+    public void setArenaChampions(Champion arenaChampion) {
+        this.arenaChampions.add(arenaChampion);
+    }
+
+    ArrayList<Champion> arenaChampions = new ArrayList<Champion>();
+
     public ArrayList<Champion> getBenchChampions() {
         return playerBench.getBenchChampions();
     }
