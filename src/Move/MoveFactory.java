@@ -46,7 +46,8 @@ public class MoveFactory {
             }
             case (4) :
             {
-
+               BasicAttackMove move = new BasicAttackMove();
+               move.PerformMove();
             }
             case (5) :
             {
