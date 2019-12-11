@@ -9,7 +9,17 @@ public abstract class Player {
     String name;
     Bench playerBench = new Bench();
     ArrayList<Champion> currentChampions = new ArrayList<Champion>();
+    ArrayList<Champion> arenaChampions = new ArrayList<Champion>();
 
+    public int getPlayerIndex() {
+        return PlayerIndex;
+    }
+
+    public void setPlayerIndex(int playerIndex) {
+        PlayerIndex = playerIndex;
+    }
+
+    int PlayerIndex;
     public ArrayList<Champion> getBenchChampions() {
         return playerBench.getBenchChampions();
     }
@@ -37,5 +47,11 @@ public abstract class Player {
 
     public abstract void setName(String playerName);
 
+    public ArrayList<Champion> getArenaChampions() {
+        return arenaChampions;
+    }
 
+    public void setArenaChampions(Champion arenaChampion) {
+        this.arenaChampions.add(arenaChampion);
+    }
 }

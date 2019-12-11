@@ -35,8 +35,11 @@ public class BuyMove extends Move {
         ArrayList<Integer> choices = new ArrayList<Integer>();
         TemporalStoreFilter tempStore = new TemporalStoreFilter();
         choices= tempStore.GetOnly(championsNumber);
+        System.out.println(choices);
         CurrentChampions =  buying.performMove(choices,tempStore.getChampionsForTempStore1(),tempStore.getChampionsForTempStore());
-         System.out.println("================================="+CurrentChampions);
+//        System.out.println();
+//
+//         System.out.println("================================="+CurrentChampions);
         return CurrentChampions;
     }
 
