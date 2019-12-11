@@ -16,6 +16,7 @@ public class PlaceMove extends Move {
                 a.getSquare(x,y).getChampionsIn().add(p);
                 p.x = x ;
                 p.y = y ;
+        System.out.println("k");
                 //remember to delete the champoin from the old square cuz i used your placemove in walkmove :P
 
     }

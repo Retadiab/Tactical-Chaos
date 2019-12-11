@@ -14,12 +14,20 @@ public class WalkMove extends Move {
         switch (id ) {
             case (1) :
                 MoveUp(champion , arena);
+                System.out.println("u moved up ");
+                break;
             case (2) :
                 MoveDown(champion , arena);
+                System.out.println("u moved down ");
+                break;
             case (3) :
                 MoveLeft(champion , arena);
+                System.out.println("u moved left ");
+                break;
             case(4):
                 MoveRight(champion , arena);
+                System.out.println("u moved right ");
+                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + id);
 
