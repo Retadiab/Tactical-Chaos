@@ -41,7 +41,7 @@ public class Squares {
     }
 
     public void setPlayersIn(ArrayList<Player> playersIn , Player p ) {
-         this.playersIn.add(playersIn.indexOf(p));
+         this.playersIn.add(playersIn.indexOf(p)+1);
 
     }
 

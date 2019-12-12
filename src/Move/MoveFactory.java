@@ -2,7 +2,9 @@ package Move;
 
 import Arena.Arena;
 import Champion.Champion;
+import Player.Player;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MoveFactory {
@@ -18,7 +20,7 @@ public class MoveFactory {
        System.out.println("7- Swap between tow champions -one from the Arena , the other one from the Bench-. ");
        System.out.println("Your choice is: ");
         */
-    public static void creatMove(Champion champion , int choice  , Arena arena ){
+    public static void creatMove(Champion champion , int choice  , Arena arena , Player p1 , ArrayList<Player> players){
 
         switch (choice) {
             case (1) :
@@ -41,17 +43,20 @@ public class MoveFactory {
                 System.out.print("your choice :");
                 id = d.nextInt() ;
                 WalkMove move = new WalkMove();
-                move.PerformMove(champion , id , arena);
+                move.PerformMove(champion , id , arena,p1,players);
                 break;
             }
             case (4) :
             {
-
+                break;
             }
-            case (5) :
-            {
 
-            }
+
+            case (5):
+                break;
+
+
+
             case (6) :
             {
                 Scanner Sx = new Scanner(System.in) ;
@@ -63,7 +68,7 @@ public class MoveFactory {
                 System.out.print("select y : ");
                 y = Sy.nextInt() ;
                 PlaceMove move = new PlaceMove();
-                move.placeMove(x,y,champion , arena);
+                move.placeMove(x,y,champion , arena,players,p1);
                 break;
             }
             case (7) :

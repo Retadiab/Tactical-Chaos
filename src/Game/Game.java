@@ -22,7 +22,7 @@ public abstract class Game {
     public Arena arena ;
     public int turnNumber;
     protected int numberOfPlayers;
-    public  static Random r =new Random();
+    public   Random r =new Random();
 
     public GameState gamestate = GameState.startGame ;
 
@@ -52,7 +52,7 @@ public abstract class Game {
 
 
 
-        return items.get(this.IndexToDelete);
+        return p;
     }
 
     Game() {
@@ -102,7 +102,7 @@ public abstract class Game {
 
                     Player currentPlayer = takeTurns(this.x);
                     Planning planningPhase2 = new Planning();
-                    planningPhase2.getChampionChoiceFromPhase2(planningPhase2.printPlanningListPhase2(),currentPlayer,arena,getIndexOfPlayerToPrintItWithArena());
+//                    .getChampionChoiceFromPhase2(planningPhase2.printPlanningListPhase2(),currentPlayer,arena,getIndexOfPlayerToPrintItWithArena());
                     //how many times the champion could make a plane >> and when should i do the execute move ??
                     //mbye there is no time limited for the planning such ass when he want to end plannig he could press any button to end the planning phase and then directly i could make the execute for planning
 
@@ -134,6 +134,8 @@ public abstract class Game {
 
                 }
 
+
+
     public ArrayList<Player> initPlayers(){
         System.out.println("please enter the number of players ");
         System.out.println("Note : the number must be up to 8 ");
@@ -150,17 +152,22 @@ public abstract class Game {
 
             ConsolePlayer p1 = new ConsolePlayer();
             p1.setIndex(1);
-//            System.out.println("player1 index"+p1.getIndex());
+            System.out.println("player1 index"+p1.getIndex());
             players.add(p1);
+            System.out.println("player1  after adding"+p1.getIndex());
 
+            players.get(0).setPlayerIndex(1);
+            System.out.println("player1 index"+players.get(0).getPlayerIndex());
 
             for (int i =2; i <=numberOfPlayers; i++) {
                 AutoPlayer p = new AutoPlayer();
                 p.setPlayerIndex(i);
-//                System.out.println("player1 index"+p.getPlayerIndex());
+                System.out.println("players from inital"+p.getPlayerIndex());
 
                 players.add(p);
             }
+            System.out.println("players from inital1111111111111"+players);
+
         }
         System.out.println("players from inital"+players);
 

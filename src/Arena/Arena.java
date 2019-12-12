@@ -38,6 +38,9 @@ public  class Arena {
     }
 
     public void printArena(Player p , ArrayList<Player> p1){
+        System.out.println(p1.size());
+System.out.println(p1);
+        System.out.println("player in arena "+p);
 
         for(int i = 0; i < 25; i++)
         {
@@ -47,11 +50,16 @@ public  class Arena {
             if(squares[i][j].getState() == State.Free)
                 System.out.print("[###]");
 
-            else{
+            else {
+//                if (squares[i][j].getPlayersIn().contains(p.getPlayerIndex())){
+//                    for(int k= 0 ; k<squares[i][j].getChampionsIn().size() ; k++)
+//
+//                        System.err.print("["+squares[i][j].getChampionsIn().get(k).toInitials()+"P"+(p1.indexOf(p))+"]");
+//                }
+//                else
 
-                for(int k= 0 ; k<squares[i][j].getChampionsIn().size() ; k++)
-
-                System.err.print("["+squares[i][j].getChampionsIn().get(k).toInitials()+"P"+(p.getPlayerIndex())+"]");
+                                    for(int k= 0 ; k<squares[i][j].getChampionsIn().size() ; k++)
+                System.err.print("["+squares[i][j].getChampionsIn().get(k).toInitials()+"P"+squares[i][j].getPlayersIn().get(k)+"]");
 
             }
 
