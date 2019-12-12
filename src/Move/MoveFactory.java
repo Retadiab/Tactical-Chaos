@@ -2,7 +2,7 @@ package Move;
 
 import Arena.Arena;
 import Champion.Champion;
-
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MoveFactory {
@@ -46,8 +46,21 @@ public class MoveFactory {
             }
             case (4) :
             {
+                Scanner x = new Scanner(System.in) ;
+                int s ;
+                ArrayList<Champion> AttackableChampion = new ArrayList<Champion>();
                BasicAttackMove move = new BasicAttackMove();
-               move.PerformMove();
+               AttackableChampion = move.attackAccepted(champion , arena);
+               // AttackableChampion = null ;
+
+               if (AttackableChampion == null){
+                   System.out.println("there is no champion to Attack");
+                     break;}
+                System.out.println("select Champion to attack");
+                System.out.println(AttackableChampion);
+                s = x.nextInt() ;
+               move.PerformMove(champion , AttackableChampion.get(s));
+                System.out.println("5ra");
             }
             case (5) :
             {
@@ -64,7 +77,7 @@ public class MoveFactory {
                 System.out.print("select y : ");
                 y = Sy.nextInt() ;
                 PlaceMove move = new PlaceMove();
-                move.placeMove(x,y,champion , arena);
+                move.placeMove(x,y,champion , arena,null,null);
                 break;
             }
             case (7) :
@@ -76,8 +89,9 @@ public class MoveFactory {
     }
 
     public static void main(String[] args) {
-
-
+   Champion champion = new Champion() ;
+   Arena arena = new Arena() ;
+   MoveFactory.creatMove(champion , 4 , arena);
     }
 
 

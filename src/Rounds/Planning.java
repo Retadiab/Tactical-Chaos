@@ -230,7 +230,7 @@ return isRound;
             }
             case (3): {
 
-//
+//                7dde al champion      MoveFactory.creatmove (champion , a)
 //                WalkMove move3 = new WalkMove();
 //                move3.PerformMove();
                 System.out.println("Walking move must be running right now");

@@ -1,7 +1,9 @@
 package Move;
+import Arena.*;
 import Champion.* ;
 import Damage.*;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class BasicAttackMove extends Move {
@@ -11,6 +13,21 @@ static Random r = new Random() ;
 
 
 
+    public  ArrayList<Champion> attackAccepted(Champion Attacker , Arena arena){
+        ArrayList<Champion> AttackableChampion = new ArrayList<Champion>();
+        int x = Attacker.x - (int)Attacker.AttackRange ;
+        int y = Attacker.y - (int) Attacker.AttackRange;
+
+        for(int i = x ; i <= x+Attacker.AttackRange *2 ; i++ )
+            for (int j =y ; j <= y+Attacker.AttackRange *2 ; j++)
+            {
+                if (i==Attacker.x&&j == Attacker.y)
+                    break;
+                else if (arena.getSquare(i , j).getState() == SquaresState.Occupied)
+                   AttackableChampion.addAll(arena.getSquare(i , j).getChampionsIn()) ;
+            }
+        return AttackableChampion ;
+    }
 
     public void PerformMove(Champion Attacker , Champion Target ) {
         if(Target.getHealth() == 0 )
