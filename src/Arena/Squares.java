@@ -36,16 +36,16 @@ public class Squares {
 
     ArrayList<Champion> championsIn = new ArrayList<Champion>();
 
-    public ArrayList<Integer> getPlayersIn() {
+    public ArrayList<Player> getPlayersIn() {
         return playersIn;
     }
 
-    public void setPlayersIn(ArrayList<Player> playersIn , Player p ) {
-         this.playersIn.add(playersIn.indexOf(p)+1);
+    public void setPlayersIn( Player p ) {
+         this.playersIn.add(p);
 
     }
 
-    ArrayList<Integer> playersIn = new ArrayList<Integer>();
+    ArrayList<Player> playersIn = new ArrayList<Player>();
 
 
     public ArrayList<Champion> getChampionsIn() {

@@ -30,11 +30,13 @@ public class  InGameStore {
     public Champion readChampion(String championAsString){
         String[] champion = championAsString.split(",");
 //System.out.println(championAsString);
-        for (int l =0 ; l<champion.length; l++)
-        {
+//        for (int l =0 ; l<champion.length; l++)
+//        {
+//
+////    System.out.println(champion[l]);
+//        }
 
-//    System.out.println(champion[l]);
-        }
+
         this.int1= parseInt(champion[4]);
 
 //    System.out.println("44444444444444444444444"+this.int1);
@@ -45,7 +47,7 @@ public class  InGameStore {
         float f = parseFloat(champion[5]);
 //    System.out.println("5555555555555555555555555555555"+f);
         int j =0 ;
-        for (int i = 5; i < champion.length-1; i++) {
+        for (int i = 5; i < champion.length-2; i++) {
             floatAttributes[j] = parseFloat(champion[i]);
 //            System.out.println("floate addddd"+floatAttributes[j]);
             j++;
@@ -55,6 +57,7 @@ public class  InGameStore {
 
 
         int len = champion.length;
+        this.championId = parseInt(champion[17]);
 
         Champion championToReturn = new Champion(
                 champion[0],
@@ -73,7 +76,8 @@ public class  InGameStore {
                 floatAttributes[8],
                 floatAttributes[9],
                 floatAttributes[10],
-                champion[len-1]);
+                champion[16],
+                this.championId);
 
         return  championToReturn;
 

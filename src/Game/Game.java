@@ -21,7 +21,7 @@ public abstract class Game {
     ArrayList<Player> players = new ArrayList<Player>();
     public Arena arena ;
     public int turnNumber;
-    protected int numberOfPlayers;
+    public int numberOfPlayers3;
     public   Random r =new Random();
 
     public GameState gamestate = GameState.startGame ;
@@ -141,34 +141,44 @@ public abstract class Game {
         System.out.println("Note : the number must be up to 8 ");
         int numberOfPlayers ;
         numberOfPlayers= numberOfPlayers1.nextInt();
+        this.numberOfPlayers3=numberOfPlayers;
+        boolean wrongNum=false;
         if(numberOfPlayers > 8 || numberOfPlayers <= 1) {
-            System.out.println("please enter a right Number >>> ");
+            wrongNum=true;
+            while (wrongNum){
+
+                System.err.println("please enter a right Number >>> ");
+                numberOfPlayers= numberOfPlayers1.nextInt();
+                if(numberOfPlayers > 8 || numberOfPlayers <= 1) {
+                    wrongNum=true;}
+                else
+                    wrongNum=false;
+
+            }
 
 
         }
-        else
-        {
 
 
             ConsolePlayer p1 = new ConsolePlayer();
-            p1.setIndex(1);
-            System.out.println("player1 index"+p1.getIndex());
+//            p1.setIndex(1);
+//            System.out.println("player1 index"+p1.getIndex());
             players.add(p1);
-            System.out.println("player1  after adding"+p1.getIndex());
+//            System.out.println("player1  after adding"+p1.getIndex());
 
             players.get(0).setPlayerIndex(1);
-            System.out.println("player1 index"+players.get(0).getPlayerIndex());
+//            System.out.println("player1 index"+players.get(0).getPlayerIndex());
 
             for (int i =2; i <=numberOfPlayers; i++) {
                 AutoPlayer p = new AutoPlayer();
                 p.setPlayerIndex(i);
-                System.out.println("players from inital"+p.getPlayerIndex());
+//                System.out.println("players from inital"+p.getPlayerIndex());
 
                 players.add(p);
             }
-            System.out.println("players from inital1111111111111"+players);
+//            System.out.println("players from inital1111111111111"+players);
 
-        }
+
         System.out.println("players from inital"+players);
 
         return this.players;

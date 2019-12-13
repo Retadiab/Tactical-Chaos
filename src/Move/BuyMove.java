@@ -37,9 +37,6 @@ public class BuyMove extends Move {
         choices= tempStore.GetOnly(championsNumber);
         System.out.println(choices);
         CurrentChampions =  buying.performMove(choices,tempStore.getChampionsForTempStore1(),tempStore.getChampionsForTempStore());
-//        System.out.println();
-//
-//         System.out.println("================================="+CurrentChampions);
         return CurrentChampions;
     }
 

@@ -1,6 +1,7 @@
 package Arena;
 
 
+import Champion.Champion;
 import Player.Player;
 
 import java.util.ArrayList;
@@ -51,15 +52,19 @@ System.out.println(p1);
                 System.out.print("[###]");
 
             else {
-//                if (squares[i][j].getPlayersIn().contains(p.getPlayerIndex())){
-//                    for(int k= 0 ; k<squares[i][j].getChampionsIn().size() ; k++)
-//
-//                        System.err.print("["+squares[i][j].getChampionsIn().get(k).toInitials()+"P"+(p1.indexOf(p))+"]");
-//                }
-//                else
+                if (squares[i][j].getPlayersIn().contains(p)){
 
-                                    for(int k= 0 ; k<squares[i][j].getChampionsIn().size() ; k++)
-                System.err.print("["+squares[i][j].getChampionsIn().get(k).toInitials()+"P"+squares[i][j].getPlayersIn().get(k)+"]");
+                    for(int k= 0 ; k<squares[i][j].getChampionsIn().size() ; k++)
+
+                        System.err.print("["+squares[i][j].getChampionsIn().get(k).toInitials()+"P"+(p.getPlayerIndex())+"]");
+                }
+                else{
+                    System.out.print("[###]");
+
+                }
+
+//                                    for(int k= 0 ; k<squares[i][j].getChampionsIn().size() ; k++)
+//                System.err.print("["+squares[i][j].getChampionsIn().get(k).toInitials()+"P"+p.getPlayerIndex()+"]");
 
             }
 
@@ -84,6 +89,23 @@ System.out.println(p1);
         return this.arenaSize;
     }
 
+ArrayList<Champion> allChampionsOnArena = new ArrayList<Champion>();
+    public ArrayList<Champion> getAllChampionsOnArena(){
+        for(int i = 0; i < 25; i++)
+        {
+            for(int j = 0; j < 25; j++) {
+                for(int k= 0 ; k<squares[i][j].getChampionsIn().size() ; k++)
+                    allChampionsOnArena.addAll(squares[i][j].getChampionsIn());
+
+
+            }
+
+
+
+
+    }
+    return allChampionsOnArena;
+    }
 
 //    public static void main(String[] args) {
 //        Arena a =new Arena();

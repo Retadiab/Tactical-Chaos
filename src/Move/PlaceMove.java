@@ -17,7 +17,7 @@ boolean donePlaced = false;
 
 
                 a.getSquare(x,y).setChampionsIn(p);
-                a.getSquare(x,y).setPlayersIn(players , playerForSquare);
+                a.getSquare(x,y).setPlayersIn(playerForSquare);
 
 
                 System.out.println("champions on araena");

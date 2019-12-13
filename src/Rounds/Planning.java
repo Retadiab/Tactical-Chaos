@@ -15,6 +15,7 @@ import Champion.Champion;
 import Move.*;
 import Player.Player;
 
+import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -29,7 +30,9 @@ public class Planning extends Round{
     ArrayList<String> plan = new ArrayList<String>();
     static Scanner championToMove =new Scanner(System.in);
     static Scanner ChampionToAttackWith =new Scanner(System.in);
+    static Scanner ChampionToBeAttacked =new Scanner(System.in);
 
+    static ArrayList<Champion> championsForPlan = new ArrayList<Champion>();
 
 
 
@@ -58,11 +61,11 @@ public class Planning extends Round{
 
         System.out.println("1- Sell champions.");
         System.out.println("2- Buy champions.");
-        System.out.println("3- Swap between tow champions -one from the Arena , the other one from the Bench-.");
+        System.out.println("3- Walk move.");
         System.out.println("4- Attack a champion.");
         System.out.println("5- Use ability for specific champion.");
         System.out.println("6- Place champion.");
-        System.out.println("7- Attack a champion. ");
+        System.out.println("7- Swap");
         System.out.println("Your choice is: ");
 
 
@@ -211,15 +214,15 @@ boolean isRound = false;
 return isRound;
     }
 
-    public     ArrayList<Champion>  getChampionChoiceFromPhase2(int userChoice , Player player, Arena arena , ArrayList<Player> indexOfPlayerToPrintItWithArena){
+    public     String  getChampionChoiceFromPhase2(int userChoice , Player player, Arena arena , ArrayList<Player> indexOfPlayerToPrintItWithArena){
         boolean isRound = false;
+        String moveAsString =new String();
 
-        ArrayList<Champion> championsForPlan = new ArrayList<Champion>();
 
         switch (userChoice) {
-
             case (1): {
 //                SellMove move1 = new SellMove();
+                moveAsString = moveAsString+"S";
 
                 System.out.println("Selling move must be running right now");
 
@@ -231,6 +234,7 @@ return isRound;
 
             case (2): {
 //                BuyMove move2 = new BuyMove();
+                moveAsString = moveAsString+"T";
 
                 ///ro7y jebeha mn hnek
                 System.out.println("Buying move must be running right now");
@@ -256,11 +260,10 @@ return isRound;
                     }
                     System.out.println(planForBuying);
                     plan.add(planForBuying);
-//                    if(execute){
-//                        player.getCurrentChampions().addAll(addedChampions);
-//                        player.getBenchChampions().addAll(addedChampions);
-//                        isRound = true;
-//                    }
+
+                    player.getCurrentChampions().addAll(addedChampions);
+                    player.getBenchChampions().addAll(addedChampions);
+
 
 
                 }
@@ -281,57 +284,75 @@ return isRound;
             }
             case (3): {
 
-
+                moveAsString = moveAsString+"W";
                 System.out.println("Please select the champion that you want to Move: ");
                 System.out.println(player.getArenaChampions());
                 int championToMove1;
                 championToMove1 =championToMove.nextInt();
                 System.out.println(championToMove1);
+                String s =new String();
+                s =player.getArenaChampions().get(championToMove1-1).championName.substring(0,3);
+
 //                MoveFactory.creatMove(player.getArenaChampions().get(championToMove1),userChoice,arena,player,indexOfPlayerToPrintItWithArena);
                 System.out.println("Walking move must be running right now");
-                championsForPlan.add(player.getArenaChampions().get(championToMove1));
-                return championsForPlan;
+                Scanner d = new Scanner(System.in);
+                String id ;
+                System.out.println("where did you want to move ? ");
+                System.out.println(" 1-move up \n 2-move down \n 3-move left \n 4-move right");
+                System.out.print("your choice :");
+                id = d.next() ;
+
+                moveAsString = moveAsString+s+id;
+                System.out.println("move as string"+ moveAsString);
+
+                break;
             }
-
-
-
-
             case (4): {
 
+                moveAsString = moveAsString+"A";
+                ArrayList<Champion> championGetsAttack = new ArrayList<Champion>();
                 System.out.println("Please select the champion you want to attack with: ");
                 System.out.println(player.getArenaChampions());
                 int championToAttackWith;
                 championToAttackWith =ChampionToAttackWith.nextInt();
-                championsForPlan.add(player.getArenaChampions().get(championToAttackWith));
+                String championAsString = new String();
+                championAsString= player.getArenaChampions().get(championToAttackWith-1).championName.substring(0,3);
+                moveAsString = moveAsString+championAsString;
                 System.out.println("The Champions on your Attack Range Are: ");
 
+                BasicAttackMove move = new BasicAttackMove();
+                championGetsAttack = move.attackAccepted(player.getArenaChampions().get(championToAttackWith-1),arena);
+                System.out.println(championGetsAttack);
+                System.out.println("Please choice a champion: ");
+                int championToBeAttacked;
+                championToBeAttacked =ChampionToBeAttacked.nextInt();
+                String championAsString2 = new String();
+                championAsString2 =championGetsAttack.get(championToBeAttacked-1).championName.substring(0,3);
+                moveAsString = moveAsString+championAsString2;
+
+
+                System.out.println(moveAsString);
 
                 break;
 
 
             }
             case (5):
-            {
-                System.out.println("UsingAbilities move must be running right now");
+            {moveAsString = moveAsString+"B";
+                System.out.println("Using Abilities move must be running right now");
                 System.out.println("==========================================================");
+                System.out.println("Please choose your champion : ");
+                System.out.println("your champions list is : ");
 
-                System.out.println("Please enter ID of one of your champions : ");
-                System.out.println("your champion list is : ");
 
-//                for(int i =0 ; i<currentChampions.size(); i++){
-//                                    //get currentChampions from the player class
-//                //consolePlayer.CurrentChampions
-//                }
+               System.out.println(player.getArenaChampions());
+
                 System.out.println("your choice is : ");
-
-                int userChampionFor= x1.nextInt();
-
-                Champion championToUseAbility = new Champion();
-                //championToUseAbility = consolePlayer.CurrentChampions.get(userChampionFor-1);
-
-                ActivateFioraAbilityMove move6 = new ActivateFioraAbilityMove();
-
-
+                int userChampionForUsingAbility= x1.nextInt();
+                String useAbilityChampion = new String();
+                useAbilityChampion =player.getArenaChampions().get(userChampionForUsingAbility-1).championName.substring(0,3);
+                moveAsString = moveAsString+useAbilityChampion;
+//                championsForPlan.add( player.getArenaChampions().get(userChampionForUsingAbility-1));
 
                 break;
 
@@ -340,6 +361,7 @@ return isRound;
 
             }
             case (6):{
+                moveAsString = moveAsString+"P";
 
                 System.out.println("Placing move must be running right now");
 
@@ -350,7 +372,7 @@ return isRound;
 
                 if(player.getBenchChampions().size()==0){
 
-                    System.err.println("You don't have any champion IN BENCH to place yet! you can buy some by pressing 1");
+                    System.err.println("You don't have any champion IN BENCH to place yet! you can buy some by pressing 2");
                 }
 
                 else{
@@ -398,9 +420,9 @@ return isRound;
                         championToDeleteFromBench =  player.getBenchChampions().get(indexOfChosenChampion-1);
                         player.getBenchChampions().remove(championToDeleteFromBench);
                         player.setArenaChampions(championToDeleteFromBench);
-                        System.out.println("player int placemove"+player.getPlayerIndex());
-                        System.out.println("player as palyer"+player);
-                        System.out.println("Arraylist as palyer"+indexOfPlayerToPrintItWithArena);
+//                        System.out.println("player int placemove"+player.getPlayerIndex());
+//                        System.out.println("player as palyer"+player);
+//                        System.out.println("Arraylist as palyer"+indexOfPlayerToPrintItWithArena);
                         arena.printArena(player,indexOfPlayerToPrintItWithArena);
 
                     }
@@ -411,13 +433,19 @@ return isRound;
                 }
                 break;
             }
+            case (7):{
+                moveAsString = moveAsString+"R";
+                //swap
+                System.out.println("swaaaaap");
+                break;
+            }
             default:
                 System.out.println("Please enter a right number");
 
 
 
         }
-return championsForPlan;
+return moveAsString;
     }
 
 
