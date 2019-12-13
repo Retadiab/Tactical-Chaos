@@ -26,6 +26,7 @@ public abstract class Game {
 
     public GameState gamestate = GameState.startGame ;
 
+    int numberOfPlayers ;
 
 
 
@@ -139,7 +140,6 @@ public abstract class Game {
     public ArrayList<Player> initPlayers(){
         System.out.println("please enter the number of players ");
         System.out.println("Note : the number must be up to 8 ");
-        int numberOfPlayers ;
         numberOfPlayers= numberOfPlayers1.nextInt();
         this.numberOfPlayers3=numberOfPlayers;
         boolean wrongNum=false;

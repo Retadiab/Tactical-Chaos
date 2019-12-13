@@ -52,16 +52,15 @@ System.out.println(p1);
                 System.out.print("[###]");
 
             else {
-                if (squares[i][j].getPlayersIn().contains(p)){
 
-                    for(int k= 0 ; k<squares[i][j].getChampionsIn().size() ; k++)
+                    for(Champion c : p.getArenaChampions())
 
-                        System.err.print("["+squares[i][j].getChampionsIn().get(k).toInitials()+"P"+(p.getPlayerIndex())+"]");
-                }
-                else{
-                    System.out.print("[###]");
+                        if(c.x==i && c.y == j )
+                        System.err.print("["+c.toInitials()+"P"+(p.getPlayerIndex())+"]");
+//
 
-                }
+
+
 
 //                                    for(int k= 0 ; k<squares[i][j].getChampionsIn().size() ; k++)
 //                System.err.print("["+squares[i][j].getChampionsIn().get(k).toInitials()+"P"+p.getPlayerIndex()+"]");

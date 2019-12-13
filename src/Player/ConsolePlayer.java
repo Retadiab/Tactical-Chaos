@@ -7,6 +7,7 @@ import Rounds.Plan;
 import java.util.ArrayList;
 
 public  class ConsolePlayer extends Player {
+    String name;
 
     public Plan getPlayerPlan() {
         return playerPlan;
@@ -55,7 +56,6 @@ public  class ConsolePlayer extends Player {
         this.name = name;
     }
 
-    String name;
 
 
 

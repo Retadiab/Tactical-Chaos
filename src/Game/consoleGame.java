@@ -16,14 +16,6 @@ import java.util.Scanner;
 
 public class consoleGame extends Game{
     static Scanner numberOfPlayers1 =new Scanner(System.in);
-
-
-
-
-
-
-
-
     private ArrayList<Player> players = new ArrayList<Player>();
 
 
@@ -68,6 +60,7 @@ public class consoleGame extends Game{
         ArrayList<Round> rounds =new ArrayList<Round>();
         ArrayList<Player> x = new ArrayList<Player>();
         ArrayList<Player> arsa = new ArrayList<Player>();
+
         public void PropagateMove(Champion sourceChampion , Champion targetChampion ){
             gamestate= GameState.runningGame;
 
@@ -86,7 +79,7 @@ public class consoleGame extends Game{
             ArrayList<Player> tempPlayers = new ArrayList<Player>();
             tempPlayers = playersOfTheGame;
 //            System.out.println(this.x);
-            int counter1 = tempPlayers.size();
+            int counter1 = numberOfPlayers3;
 //            System.out.println(counter1);
 
             //phase 1 begin
@@ -105,9 +98,9 @@ public class consoleGame extends Game{
                 tempPlayers.remove(currentPlayer);
                 arsa.add(currentPlayer);
 
-
                 System.out.println("tempplayers :" + tempPlayers);
                 System.out.println("tempplayers :" + arsa);
+
                 for(int j= 0 ; j<arsa.size() ; j++){
                     System.out.println("2ersa players indexes " + arsa.get(j).getPlayerIndex());
 
@@ -115,7 +108,7 @@ public class consoleGame extends Game{
                 boolean isRound =false;
                 int counter = 0;
                 System.err.println("Welcome to Phase 1, please choose your movement: ");
-                while(counter < 2 ){
+                while(counter < 9 ){
                     System.out.println("Phase 1 is running, please choose your movement: ");
                     Planning planningPhase1 = new Planning();
                     isRound =planningPhase1.getChampionChoiceFromPhase1(planningPhase1.printPlanningListPhase1(),currentPlayer,arena, arsa);
@@ -123,7 +116,7 @@ public class consoleGame extends Game{
                     if(isRound){
                         rounds.add(planningPhase1);
                     }
-//                    System.out.println("Rounds print "+rounds);
+                    System.out.println("Rounds print "+rounds.size());
                     counter++;
                 }
 
@@ -139,40 +132,43 @@ public class consoleGame extends Game{
 ////            rounds.add(new Planning());
 //
 //
-//            if(rounds.size() == (2*3)){
-//                ArrayList<String> planForEachPlayer = new ArrayList<String>();
-//                ArrayList<ArrayList<String>> plansOfTheRound = new ArrayList<ArrayList<String>>();
-//
-//                int CounterForPlans =2;
-//
-//                while(CounterForPlans!=0) {
-//
-//                    System.out.println("Welcome to Phase 2 ");
-//                    System.out.println(arsa);
-//                    Player currentPlayer = takeTurns(arsa);
-//                    System.out.println(currentPlayer);
-//                    int counterPhase2 = 0;
-//                    int limit = 4;
-//                    Planning planningPhase2 = new Planning();
-//
-//                    while (counterPhase2 != limit) {
-//                        planForEachPlayer.add(planningPhase2.getChampionChoiceFromPhase2(planningPhase2.printPlanningListPhase2(), currentPlayer, arena, arsa));
-//                        //                    ExecuteMove executeMovePhase2 = new ExecuteMove();
-//                        System.out.println(plansOfTheRound);
-//                        counterPhase2++;
-//                    }
-//                    plansOfTheRound.add(planForEachPlayer);
-//                    for (int i = 0; i < plansOfTheRound.size(); i++) {
-//                        for (int j = 0; j < plansOfTheRound.get(i).size(); j++) {
-//                            System.out.print(plansOfTheRound.get(i).get(j) + " ");
-//                        }
-//                        System.out.println();
-//                    }
-//                }
-//
-//                CounterForPlans = CounterForPlans-1;
-//                    System.out.println("END OF PHASE 2");
-//                }
+            if(rounds.size() == (numberOfPlayers3*9)){
+                ArrayList<String> planForEachPlayer = new ArrayList<String>();
+                ArrayList<ArrayList<String>> plansOfTheRound = new ArrayList<ArrayList<String>>();
+
+                int CounterForPlans =numberOfPlayers+2;
+
+                while(CounterForPlans!=0) {
+
+                    System.out.println("Welcome to Phase 2 ");
+                    System.out.println(arsa);
+
+
+
+                    Player currentPlayer = takeTurns(arsa);
+                    System.out.println(currentPlayer);
+                    int counterPhase2 = 0;
+                    int limit = 4;
+                    Planning planningPhase2 = new Planning();
+
+                    while (counterPhase2 != limit) {
+                        planForEachPlayer.add(planningPhase2.getChampionChoiceFromPhase2(planningPhase2.printPlanningListPhase2(), currentPlayer, arena, arsa));
+                        //                    ExecuteMove executeMovePhase2 = new ExecuteMove();
+                        System.out.println(plansOfTheRound);
+                        counterPhase2++;
+                    }
+                    plansOfTheRound.add(planForEachPlayer);
+                    for (int i = 0; i < plansOfTheRound.size(); i++) {
+                        for (int j = 0; j < plansOfTheRound.get(i).size(); j++) {
+                            System.out.print(plansOfTheRound.get(i).get(j) + " ");
+                        }
+                        System.out.println();
+                    }
+                }
+
+                CounterForPlans = CounterForPlans-1;
+                    System.out.println("END OF PHASE 2");
+                }
 
 
 
