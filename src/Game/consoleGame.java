@@ -75,7 +75,7 @@ public class consoleGame extends Game{
         System.out.println("#2 \t Bots against each other: ");
 
         int wayOfPlaying = WayOfPlaying.nextInt();
-        System.out.println(ConsoleColors.YELLOW+"======================================================================================================================="+ConsoleColors.RESET);
+//        System.out.println(ConsoleColors.YELLOW+"======================================================================================================================="+ConsoleColors.RESET);
 
 
         this.players = this.initPlayers(wayOfPlaying);
