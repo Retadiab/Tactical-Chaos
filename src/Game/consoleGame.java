@@ -315,76 +315,76 @@ public class consoleGame extends Game{
 //
 //
 //                ArrayList<String> planForEachPlayer = new ArrayList<String>();
-//                ArrayList<ArrayList<String>> plansOfTheRound = new ArrayList<ArrayList<String>>();
+//                ArrayList<ArrayList<String>> plansOfTheRound1 = new ArrayList<ArrayList<String>>();
 //
 //                int CounterForPlans =arsa.size()+2;
-//                playersForPhase2 = arsa;
-//            Player currentPlayer = takeTurns(playersForPhase2);
-//            System.out.println(currentPlayer);
-//            System.out.println("rsa AFTER PICKING PLAYER"+arsa);
+////                playersForPhase2 = arsa;
+////            Player currentPlayer = takeTurns(playersForPhase2);
+////            System.out.println(currentPlayer);
+////            System.out.println("rsa AFTER PICKING PLAYER"+arsa);
 //                while(CounterForPlans!=0) {
-//
-//                    System.out.println("Welcome to Phase 2 ");
-//                    System.out.println(arsa);
-//
-//
-//
-//
-//                    int counterPhase2 = 0;
-//                    int limit = 4;
-//                    Planning planningPhase2 = new Planning();
-//
-//                    while (counterPhase2 != limit) {
-//                        planForEachPlayer.add(planningPhase2.getChampionChoiceFromPhase2(planningPhase2.printPlanningListPhase2(), currentPlayer, arena, arsa));
-//                        //                    ExecuteMove executeMovePhase2 = new ExecuteMove();
-//                        System.out.println(plansOfTheRound);
-//                        counterPhase2++;
-//                    }
-//                    playersForPhase2.remove(currentPlayer);
-//                    arsa.add(currentPlayer);
-//                    System.out.println("player in the temp array after phase 2"+playersForPhase2);
-//                    System.out.println("players in arsa"+arsa);
-//                    plansOfTheRound.add(planForEachPlayer);
-//                    for (int i = 0; i < plansOfTheRound.size(); i++) {
-//                        for (int j = 0; j < plansOfTheRound.get(i).size(); j++) {
-//                            System.out.print(plansOfTheRound.get(i).get(j) + " ");
-//                        }
-//                        System.out.println();
-//                    }
-//
-//                }
-//
-//                CounterForPlans = CounterForPlans-1;
-//            while (!GameEnd(playersOfTheGame)){
-//                ArrayList<String> planForEachPlayer = new ArrayList<String>();
-//                Planning plan = new Planning();
-//                for(Player p : playersOfTheGame){
-//
-//                    for(Champion c : p.getArenaChampions()){
-//
-//                        //do the moves for each champion
-//                        String s =new String();
-//                        System.out.println(ConsoleColors.YELLOW+"====================================================="+ConsoleColors.RESET);
-//                        System.out.println(ConsoleColors.GREEN+"Choose one move for champion " + c.championName+ConsoleColors.RESET);
-//                        System.out.println(ConsoleColors.YELLOW+"====================================================="+ConsoleColors.RESET);
-//
-//                        s=plan.getChampionChoiceFromPhase2(plan.printPlanningListPhase2MovesList(), p, arena, playersOfTheGame,c);
-//                        System.err.println("the move as string"+s);
-//                        planForEachPlayer.add(s);
-//                        System.err.println("conent of palnofeachplayer:"+planForEachPlayer);
-//                    }
-//                    plansOfTheRound.add(planForEachPlayer);
-//
-//                    int counter =0;
-//                    while (counter!=2){
-//                        plan.getChampionChoiceFromPhase1(plan.printPlanningListPhase1(),p,arena, playersOfTheGame);
-//
-//                        //do the buy and sell and place moves
-//                        counter++;
-//                    }
-//
-//                }
-//
+////
+////                    System.out.println("Welcome to Phase 2 ");
+////                    System.out.println(arsa);
+////
+////
+////
+////
+////                    int counterPhase2 = 0;
+////                    int limit = 4;
+////                    Planning planningPhase2 = new Planning();
+////
+////                    while (counterPhase2 != limit) {
+////                        planForEachPlayer.add(planningPhase2.getChampionChoiceFromPhase2(planningPhase2.printPlanningListPhase2(), currentPlayer, arena, arsa));
+////                        //                    ExecuteMove executeMovePhase2 = new ExecuteMove();
+////                        System.out.println(plansOfTheRound);
+////                        counterPhase2++;
+////                    }
+////                    playersForPhase2.remove(currentPlayer);
+////                    arsa.add(currentPlayer);
+////                    System.out.println("player in the temp array after phase 2"+playersForPhase2);
+////                    System.out.println("players in arsa"+arsa);
+////                    plansOfTheRound.add(planForEachPlayer);
+////                    for (int i = 0; i < plansOfTheRound.size(); i++) {
+////                        for (int j = 0; j < plansOfTheRound.get(i).size(); j++) {
+////                            System.out.print(plansOfTheRound.get(i).get(j) + " ");
+////                        }
+////                        System.out.println();
+////                    }
+////
+////                }
+////
+                  int counterForTheGame =0 ;
+                    while ((!GameEnd(playersOfTheGame) ) || (counterForTheGame == playersOfTheGame.size()*11 )) {
+                        ArrayList<String> planForEachPlayer = new ArrayList<String>();
+                        Planning plan = new Planning();
+                        for (Player p : playersOfTheGame) {
+
+                            for (Champion c : p.getArenaChampions()) {
+
+                                //do the moves for each champion
+                                String s = new String();
+                                System.out.println(ConsoleColors.YELLOW + "=====================================================" + ConsoleColors.RESET);
+                                System.out.println(ConsoleColors.GREEN + "Choose one move for champion " + c.championName + ConsoleColors.RESET);
+                                System.out.println(ConsoleColors.YELLOW + "=====================================================" + ConsoleColors.RESET);
+
+                                s = plan.getChampionChoiceFromPhase2(plan.printPlanningListPhase2MovesList(), p, arena, playersOfTheGame, c);
+                                System.err.println("the move as string" + s);
+                                planForEachPlayer.add(s);
+                                System.err.println("conent of palnofeachplayer:" + planForEachPlayer);
+                            }
+                            plansOfTheRound.add(planForEachPlayer);
+
+                            int counter = 0;
+                            while (counter != 2) {
+                                plan.getChampionChoiceFromPhase1(plan.printPlanningListPhase1(), p, arena, playersOfTheGame);
+
+                                //do the buy and sell and place moves
+                                counter++;
+                            }
+
+                        }
+
 //
 //
 //
@@ -397,9 +397,20 @@ public class consoleGame extends Game{
 //
 //            }
 
+                        counterForTheGame = counterForTheGame +1;
+                        System.out.println("END OF PHASE 2");
+                    }
 
-                    System.out.println("END OF PHASE 2");
-                }
+            for (Player p : playersOfTheGame) {
+                System.out.println("End of the Game! >>>>>>>");
+                System.out.println("Player" +p.getPlayerIndex()+"the name ");
+            }
+
+
+//                }
+//
+
+        }
 
 
 

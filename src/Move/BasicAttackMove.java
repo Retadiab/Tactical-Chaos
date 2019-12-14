@@ -2,6 +2,7 @@ package Move;
 import Arena.*;
 import Champion.* ;
 import Damage.*;
+import Player.Player;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -13,27 +14,61 @@ static Random r = new Random() ;
 
 
 
-    public  ArrayList<Champion> attackAccepted(Champion Attacker , Arena arena){
+    public  ArrayList<Champion> attackAccepted(Champion Attacker , Arena arena, Player p){
         ArrayList<Champion> AttackableChampion = new ArrayList<Champion>();
 //        int x = Attacker.x - (int)Attacker.AttackRange ;
 //        int y = Attacker.y - (int) Attacker.AttackRange;
-         if(Attacker.x + Attacker.AttackRange < arena.getArenaSize())
+
+
+
+
+
+        ////zb6e l arena size
+         if((Attacker.x + Attacker.AttackRange ) < 13)
          {
         for(int i = Attacker.x ; i <= Attacker.x + Attacker.AttackRange ; i++ )
             {
-            if (arena.getSquare(i , Attacker.y).getState() == SquaresState.Occupied)
-                AttackableChampion.addAll(arena.getSquare(i, Attacker.y).getChampionsIn());
+                if (arena.getSquare(i , Attacker.y).getState() == SquaresState.Occupied){
+
+
+
+                            //                AttackableChampion.addAll(arena.getSquare(i, Attacker.y).getChampionsIn());
+                            for(Champion c : arena.getSquare(i, Attacker.y).getChampionsIn())
+                            {
+
+                                if(c.getPlayerId() == p.getPlayerIndex()){
+                                    break;
+                                }
+                                else {
+                                    AttackableChampion.add(c);
+                                }
+                            }
+                  }
             }
-        } else
+        }
+
+         else
          {
-             for(int i = Attacker.x ; i <= arena.getArenaSize() ; i++ )
+
+         }
+             for(int i1 = Attacker.x ; i1 <= 13 ; i1++ )
              {
-                 if (arena.getSquare(i , Attacker.y).getState() == SquaresState.Occupied)
-                     AttackableChampion.addAll(arena.getSquare(i, Attacker.y).getChampionsIn());
+                 for(Champion c : arena.getSquare(i1, Attacker.y).getChampionsIn()){
+
+                     if(c.getPlayerId() == p.getPlayerIndex()){
+
+                         break;
+
+                     }
+                     else {
+
+                         AttackableChampion.add(c);
+
+                     }
              }
          }
 
-
+/////zb6ehon mtl elle fo8
 
         if (Attacker.y + Attacker.AttackRange < arena.getArenaSize() ) {
             for (int j = Attacker.y; j <= Attacker.y + Attacker.AttackRange; j++) {
@@ -53,14 +88,14 @@ static Random r = new Random() ;
 
           if( Attacker.x - (int) Attacker.AttackRange > 0 )
           {
-              for(int i =( Attacker.x - (int) Attacker.AttackRange ); i >= Attacker.x  ; i++ )
+              for(int i =( Attacker.x - (int) Attacker.AttackRange ); i <= Attacker.x  ; i++ )
               {
                   if (arena.getSquare(i , Attacker.y).getState() == SquaresState.Occupied)
                       AttackableChampion.addAll(arena.getSquare(i, Attacker.y).getChampionsIn());
               }
           }else
           {
-              for(int i =0; i >= Attacker.x  ; i++ )
+              for(int i =0; i <= Attacker.x  ; i++ )
               {
                   if (arena.getSquare(i , Attacker.y).getState() == SquaresState.Occupied)
                       AttackableChampion.addAll(arena.getSquare(i, Attacker.y).getChampionsIn());

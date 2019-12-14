@@ -318,6 +318,9 @@ ArrayList<String> plan = new ArrayList<String>();
                         if(!championIsHere){
 
                             System.err.println("Something went Wrong maybe your Target is already dead!!! :( ");
+
+                            done =true;
+                            break;
                         }
                         else {
 
@@ -355,6 +358,8 @@ ArrayList<String> plan = new ArrayList<String>();
                     }
                     if(!championIsHere){
                         System.err.println("Your champion is dead you can not use his/her ability anymore !!! ");
+                        done = true;
+                        break;
                     }
                     else {
                     MoveFactory moveAbility =new MoveFactory();

@@ -98,9 +98,7 @@ public class Planning extends Round{
 //
 //
 //    }
-
-
-    public boolean getChampionChoiceFromPhase1(int userChoice, Player p, Arena arena, ArrayList<Player> indexOfPlayerToPrintItWithArena){
+public boolean getChampionChoiceFromPhase1(int userChoice, Player p, Arena arena, ArrayList<Player> indexOfPlayerToPrintItWithArena){
 
 boolean isRound = false;
 
@@ -177,7 +175,7 @@ boolean isRound = false;
 
 
 
-                boolean placeMove = false;
+                boolean placeMove1 = false;
 
                 if(p.getBenchChampions().size()==0){
 
@@ -220,9 +218,9 @@ boolean isRound = false;
 
                     PlaceMove move2  = new PlaceMove();
 
-                   placeMove = move2.placeMove(xCoor,yCoor,p.getBenchChampions().get(indexOfChosenChampion-1),arena,indexOfPlayerToPrintItWithArena,p);
+                   placeMove1 = move2.placeMove(xCoor,yCoor,p.getBenchChampions().get(indexOfChosenChampion-1),arena,indexOfPlayerToPrintItWithArena,p);
 //                   System.out.println("she lazm estfed nno" + p.getBenchChampions().get(indexOfChosenChampion-1));
-                   if(placeMove){
+                   if(placeMove1){
 
 
                        Champion championToDeleteFromBench = new Champion();
@@ -364,7 +362,7 @@ return isRound;
                 System.out.println("The Champions on your Attack Range Are: ");
 
                 BasicAttackMove move = new BasicAttackMove();
-                championGetsAttack = move.attackAccepted(c,arena);
+                championGetsAttack = move.attackAccepted(c,arena,player);
                 System.out.println(championGetsAttack);
                 System.out.println("Please choice a champion: ");
                 int championToBeAttacked;
@@ -517,9 +515,10 @@ return moveAsString;
 
 
 
-            System.out.println(consoleGame.ConsoleColors.PURPLE_UNDERLINED+"Phase 1 is running, please choose your movement: "+ consoleGame.ConsoleColors.RESET);
-            System.out.println(consoleGame.ConsoleColors.CYAN_BOLD+"1-"+ consoleGame.ConsoleColors.RESET +" Buy champions.");
-            System.out.println(consoleGame.ConsoleColors.CYAN_BOLD+"2-"+ consoleGame.ConsoleColors.RESET +"Place your champions.");
+//            System.out.println(consoleGame.ConsoleColors.PURPLE_UNDERLINED+"Phase 1 is running, please choose your movement: "+ consoleGame.ConsoleColors.RESET);
+//            System.out.println(consoleGame.ConsoleColors.CYAN_BOLD+"1-"+ consoleGame.ConsoleColors.RESET +" Buy champions.");
+//            System.out.println(consoleGame.ConsoleColors.CYAN_BOLD+"2-"+ consoleGame.ConsoleColors.RESET +"Place your champions.");
+            System.err.println("place move");
             PlaceMove move2  = new PlaceMove();
             int xCoor = ThreadLocalRandom.current().nextInt(0, 13);
             int yCoor = ThreadLocalRandom.current().nextInt(0, 50);
@@ -579,7 +578,7 @@ return moveAsString;
 
 //        System.out.println("chamoipns on the Auto player"+p.getBenchChampions());
         return true;
-   }
+            }
 
 
     public static void main(String[] args) {

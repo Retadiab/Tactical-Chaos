@@ -1,8 +1,19 @@
 import Arena.Arena;
 import Game.*;
+
+import java.util.Random;
 //import UnassignedClasses.Arena;
 
 public class main {
+
+
+    static Random r = new Random() ;
+
+
+    public static int   getRandom(int l , int h)
+    {
+        return r.nextInt((h-l)+1)+l ;}
+
     public class ConsoleColors {
         // Reset
         public static final String RESET = "\033[0m";  // Text Reset
@@ -84,6 +95,12 @@ public class main {
 //        consoleGame game = new consoleGame();
 //        game.scanSettings();
 //        game.initGame();
+
+
+
+        for(int i=0; i<5 ; i++){
+        System.out.println(getRandom(1,4));
+        }
 
 
     }
