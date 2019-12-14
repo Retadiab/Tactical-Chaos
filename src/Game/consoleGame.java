@@ -97,6 +97,7 @@ public class consoleGame extends Game{
 
                     Planning planningPhase1 = new Planning();
 
+
                     isRound =planningPhase1.getChampionChoiceFromPhase1(planningPhase1.printPlanningListPhase1(),currentPlayer,arena, this.x);
 
                     if(isRound){
@@ -108,7 +109,9 @@ public class consoleGame extends Game{
 
                 }
             tempPlayers.remove(currentPlayer);
-
+                System.out.println("players in x beforw adding" +x);
+                x.add(currentPlayer);
+                System.out.println("players in x After adding" +x);
 
 
 
