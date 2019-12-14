@@ -2,12 +2,22 @@ package Player;
 
 import Champion.Champion;
 import GameStore.Bench;
+import Rounds.Plan;
 
 import java.util.ArrayList;
 
 public  class ConsolePlayer extends Player {
+    String name;
 
+    public Plan getPlayerPlan() {
+        return playerPlan;
+    }
 
+    public void setPlayerPlan(Plan playerPlan) {
+        this.playerPlan = playerPlan;
+    }
+
+    public Plan playerPlan = new Plan();
 
     Bench playerBench = new Bench();
     ArrayList<Champion> currentChampions = new ArrayList<Champion>();
@@ -46,7 +56,6 @@ public  class ConsolePlayer extends Player {
         this.name = name;
     }
 
-    String name;
 
 
 

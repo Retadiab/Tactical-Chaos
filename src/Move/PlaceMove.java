@@ -17,10 +17,11 @@ boolean donePlaced = false;
 
 
                 a.getSquare(x,y).setChampionsIn(p);
-                a.getSquare(x,y).setPlayersIn(players , playerForSquare);
+                a.getSquare(x,y).setPlayersIn(playerForSquare);
+
 
 //                System.out.println("champions on araena");
-//                System.out.println(a.getSquare(x,y).getChampionsIn());
+//                System.out.println(a.getSquare(x,y).getPlayersIn());
                 p.x = x ;
                 p.y = y ;
                 a.getSquare(x,y).setState(SquaresState.Occupied);

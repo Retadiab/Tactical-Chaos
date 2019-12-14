@@ -9,7 +9,9 @@ import java.util.ArrayList;
 public class Champion {
 
     private ArrayList<Move> Moves = new ArrayList<Move>();
-//    private Champion Class[];
+
+
+    //    private Champion Class[];
 //    private ArrayList<DamageCalculator> damageCalculators = new ArrayList<DamageCalculator>();
 //    public Champion c1 = new Champion();
 //    public ArrayList<Champion> champions = new ArrayList<Champion>();
@@ -34,6 +36,16 @@ public class Champion {
     private float Mana;
     public int x ;
     public int y ;
+
+    public int getPlayerId() {
+        return playerId;
+    }
+
+    public void setPlayerId(int playerId) {
+        this.playerId = playerId;
+    }
+
+    public int playerId;
 
     public String championAbility;
     public  int championId;
@@ -215,6 +227,13 @@ public class Champion {
     public float getBasicAttack() {
         return this.AttackDamage;
     }
+    public String getChampionName() {
+        return championName;
+    }
+
+    public void setChampionName(String championName) {
+        this.championName = championName;
+    }
 
     public String toString() {
         return String.format("\t%s \t%s  \t%s  \t%s \t %d \t %f \t %f \t %f\t %f\t %f\t %f  \t %f\t %f\t %f \t %f \t %f \t %s",
@@ -236,7 +255,8 @@ public class Champion {
         this.ManaStart,
         this.ManaCost,
         this.championAbility,
-                this.championLevel);
+                this.championLevel,
+                this.championId);
     }
 
 

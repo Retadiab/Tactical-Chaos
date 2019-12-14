@@ -1,13 +1,13 @@
 package Player;
 
 import Champion.Champion;
-import GameStore.Bench;
 
 import java.util.ArrayList;
 
 public  class AutoPlayer extends Player {
 
-    Bench playerBench = new Bench();
+
+
     ArrayList<Champion> currentChampions = new ArrayList<Champion>();
 
     public ArrayList<Champion> getArenaChampions() {
@@ -33,6 +33,13 @@ public  class AutoPlayer extends Player {
         return benchChampions1;
     }
 
+    public int getPlayerIndex() {
+        return PlayerIndex;
+    }
+
+    public void setPlayerIndex(int playerIndex) {
+        PlayerIndex = playerIndex;
+    }
 
     int PlayerIndex;
 
@@ -45,35 +52,5 @@ public  class AutoPlayer extends Player {
     }
 
     String name;
-
-
-
-    public int getIndex() {
-        return PlayerIndex;
-    }
-
-    public void setIndex(int PlayerIndex) {
-        this.PlayerIndex = PlayerIndex;;
-    }
-
-
-
-
-    public void setCurrentChampions(ArrayList<Champion> currentChampions) {
-        this.currentChampions = currentChampions;
-    }
-
-    public ArrayList<Champion> getCurrentChampions() {
-        return currentChampions;
-    }
-
-    int money= 0 ;
-
-
-
-
-
-
-
 
 }

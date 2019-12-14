@@ -1,9 +1,12 @@
 package Arena;
 
 
+import Champion.Champion;
+import Move.PlaceMove;
 import Player.Player;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public  class Arena {
     public static Squares[][] getSquares() {
@@ -36,31 +39,82 @@ public  class Arena {
             }
         }
     }
+    public void printAllChampionsInTheArena() {
 
-    public void printArena(Player p , ArrayList<Player> p1){
 
-        for(int i = 0; i < 25; i++)
-        {
-            for(int j = 0; j < 25; j++)
-            {
+        for (int i = 0; i < 14; i++) {
+            for (int j = 0; j < 55; j++) {
 
-            if(squares[i][j].getState() == State.Free)
-                System.out.print("[###]");
 
-            else{
+                if(squares[i][j].getState() == State.Free){
+                    System.out.print("| [###] |");
 
-                for(int k= 0 ; k<squares[i][j].getChampionsIn().size() ; k++)
+                }
+                else if(squares[i][j].getState() == State.Occupied) {
 
-                System.err.print("["+squares[i][j].getChampionsIn().get(k).toInitials()+"P"+(p.getPlayerIndex())+"]");
+                    for(Champion c : squares[i][j].getChampionsIn()){
+                        System.err.print(" | [" + c.toInitials() + "P" + c.getPlayerId() +"] |");
 
+
+                    }
+
+                }
+                else {
+                    System.err.print("");
+
+
+                }
             }
+            System.out.println("");
 
-
-            }
-            System.out.println();
         }
 
     }
+
+
+    public void printArena(Player p ) {
+
+
+
+        for (int i = 0; i < 14; i++) {
+            for (int j = 0; j < 55; j++) {
+
+
+                if(squares[i][j].getState() == State.Free){
+                    System.out.print("| [###] |");
+
+                }
+                else if(squares[i][j].getState() == State.Occupied) {
+                    for(Champion c1 :squares[i][j].getChampionsIn() ){
+
+
+                        for(Champion c : p.getArenaChampions()){
+
+
+                            if (c.equals(c1))
+
+                                System.err.print(" | [" + c.toInitials() + "P" + c.getPlayerId() +"] |");
+
+                            else
+                                System.out.print("| [###] |");
+
+                        }
+                    }
+
+
+                }
+                else {
+                    System.err.print("| [###] |");
+
+
+                }
+            }
+            System.out.println("");
+
+        }
+
+    }
+
 
 
     public Squares getSquare(int i, int j) {
@@ -76,6 +130,23 @@ public  class Arena {
         return this.arenaSize;
     }
 
+ArrayList<Champion> allChampionsOnArena = new ArrayList<Champion>();
+    public ArrayList<Champion> getAllChampionsOnArena(){
+        for(int i = 0; i < 25; i++)
+        {
+            for(int j = 0; j < 25; j++) {
+                for(int k= 0 ; k<squares[i][j].getChampionsIn().size() ; k++)
+                    allChampionsOnArena.addAll(squares[i][j].getChampionsIn());
+
+
+            }
+
+
+
+
+    }
+    return allChampionsOnArena;
+    }
 
 //    public static void main(String[] args) {
 //        Arena a =new Arena();

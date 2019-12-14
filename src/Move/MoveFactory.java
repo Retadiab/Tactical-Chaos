@@ -2,6 +2,8 @@ package Move;
 
 import Arena.Arena;
 import Champion.Champion;
+import Player.Player;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,80 +20,88 @@ public class MoveFactory {
        System.out.println("7- Swap between tow champions -one from the Arena , the other one from the Bench-. ");
        System.out.println("Your choice is: ");
         */
-    public static void creatMove(Champion champion , int choice  , Arena arena ){
+    public  void createAbilityMove(Champion champion , Arena arena , Player p1 , ArrayList<Player> players){
 
-        switch (choice) {
+        switch (champion.championId) {
             case (1) :
             {
-
+                System.out.println("Ability of "+champion.championName+"must be activate ");
+                break;
             }
             case (2) :
             {
-                BuyMove buyMove = new BuyMove();
-                buyMove.doBuying(5) ;
 
+                int x;
+                System.out.println("Ability of "+champion.championName+"must be activate ");
                 break;
             }
             case (3) :
             {
-                Scanner d = new Scanner(System.in);
-                int id ;
-                System.out.println("where did you want to move ? ");
-                System.out.println(" 1-move up \n 2-move down \n 3-move left \n 4-move right");
-                System.out.print("your choice :");
-                id = d.nextInt() ;
-                WalkMove move = new WalkMove();
-                move.PerformMove(champion , id , arena);
+////                Scanner d = new Scanner(System.in);
+////                int id ;
+////                System.out.println("where did you want to move ? ");
+////                System.out.println(" 1-move up \n 2-move down \n 3-move left \n 4-move right");
+////                System.out.print("your choice :");
+////                id = d.nextInt() ;
+//                WalkMove move = new WalkMove();
+//                move.PerformMove(champion , 1 , arena,p1,players);
+//                break;
+                System.out.println("Ability of "+champion.championName+"must be activate ");
                 break;
             }
             case (4) :
             {
-                Scanner x = new Scanner(System.in) ;
-                int s ;
-                ArrayList<Champion> AttackableChampion = new ArrayList<Champion>();
-               BasicAttackMove move = new BasicAttackMove();
-               AttackableChampion = move.attackAccepted(champion , arena);
-               // AttackableChampion = null ;
-
-               if (AttackableChampion == null){
-                   System.out.println("there is no champion to Attack");
-                     break;}
-                System.out.println("select Champion to attack");
-                System.out.println(AttackableChampion);
-                s = x.nextInt() ;
-               move.PerformMove(champion , AttackableChampion.get(s));
-                System.out.println("5ra");
-            }
-            case (5) :
-            {
-
-            }
-            case (6) :
-            {
-                Scanner Sx = new Scanner(System.in) ;
-                Scanner Sy = new Scanner(System.in) ;
-                int x ;
-                int y ;
-                System.out.print("select x :");
-                x = Sx.nextInt() ;
-                System.out.print("select y : ");
-                y = Sy.nextInt() ;
-                PlaceMove move = new PlaceMove();
-                move.placeMove(x,y,champion , arena,null,null);
+                System.out.println("Ability of "+champion.championName+"must be activate ");
                 break;
             }
+
+
+            case (5):
+            {
+                System.out.println("Ability of "+champion.championName+"must be activate ");
+                break;
+            }
+
+
+            case (6) :
+            {
+//                Scanner Sx = new Scanner(System.in) ;
+//                Scanner Sy = new Scanner(System.in) ;
+//                int x ;
+//                int y ;
+//                System.out.print("select x :");
+//                x = Sx.nextInt() ;
+//                System.out.print("select y : ");
+//                y = Sy.nextInt() ;
+//                PlaceMove move = new PlaceMove();
+//                move.placeMove(x,y,champion , arena,players,p1);
+//                break;
+
+
+                    System.out.println("Ability of "+champion.championName+"must be activate ");
+                    break;
+
+
+            }
+
             case (7) :
             {
 
+                    System.out.println("Ability of "+champion.championName+"must be activate ");
+                    break;
+
+
             }
+
+            default:
+                throw new IllegalStateException("Unexpected value: " + champion.championId);
         }
 
     }
 
     public static void main(String[] args) {
-   Champion champion = new Champion() ;
-   Arena arena = new Arena() ;
-   MoveFactory.creatMove(champion , 4 , arena);
+
+
     }
 
 
