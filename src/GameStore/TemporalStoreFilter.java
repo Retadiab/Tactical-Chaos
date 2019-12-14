@@ -1,6 +1,7 @@
 package GameStore;
 
 import Champion.Champion;
+import Game.consoleGame;
 import Move.BuyMove;
 import Player.Player;
 
@@ -63,8 +64,6 @@ public class TemporalStoreFilter extends StoreFilter {
         this.championChoices.clear();
         championsListFromStore = GetChampionsList();
         int championList = 47, copyOfEachChampionInMainStore = 10;
-        ArrayList <Champion> mainstore;
-
 
             for (int i = 1; i < championList ; i++) {
                 for (int j = 0; j < copyOfEachChampionInMainStore; j++) {
@@ -80,9 +79,9 @@ public class TemporalStoreFilter extends StoreFilter {
             championsForTempStore1.add(getRandomChestItem(championsForTempStore));
           IndexesToDelete.add(this.IndexToDelete);
 
-            System.out.print(i1+1+"||\t");
+            System.out.print(consoleGame.ConsoleColors.YELLOW+(i1+1)+"||\t"+ consoleGame.ConsoleColors.RESET);
             System.out.println(championsForTempStore1.get(i1));
-            System.out.println("===================================================================================================");
+            System.out.println(consoleGame.ConsoleColors.YELLOW+"==========================================================================================================================================================================="+ consoleGame.ConsoleColors.RESET);
         }
 
 
@@ -113,7 +112,8 @@ public class TemporalStoreFilter extends StoreFilter {
                 int x =IndexesToDelete.get(pickedChampion-1);
                 championsForTempStore.remove(x);
                 System.out.println("Your champion Has been Added successfully! ");
-                counter = counter+1;}
+                counter = counter+1;
+            }
                }
 
 //        System.out.println(championChoices);
@@ -122,6 +122,81 @@ public class TemporalStoreFilter extends StoreFilter {
     }
 
 
+    public  ArrayList<Integer> GetOnlyForAutoPlayer(int championsNumber)  {
+//        this.championChoices.clear();
+        championsListFromStore = GetChampionsList();
+        int championList = 47, copyOfEachChampionInMainStore = 10;
+
+        for (int i = 1; i < championList ; i++) {
+            for (int j = 0; j < copyOfEachChampionInMainStore; j++) {
+                Champion champ = new Champion();
+                championsForTempStore.add(championsListFromStore.get(i));
+            }
+
+        }
+
+
+//            System.out.println(championsForTempStore);
+        for(int i1=0 ; i1<championsNumber ;i1++){
+            championsForTempStore1.add(getRandomChestItem(championsForTempStore));
+            IndexesToDelete.add(this.IndexToDelete);
+
+            System.out.print(consoleGame.ConsoleColors.YELLOW+(i1+1)+"||\t"+ consoleGame.ConsoleColors.RESET);
+            System.out.println(championsForTempStore1.get(i1));
+            System.out.println(consoleGame.ConsoleColors.YELLOW+"==========================================================================================================================================================================="+ consoleGame.ConsoleColors.RESET);
+        }
+
+
+
+        int counter=0;
+        ArrayList<Integer> PickedChampion= new ArrayList<Integer>();
+        PickedChampion.add(1);
+        PickedChampion.add(2);
+        PickedChampion.add(3);
+
+        int pickedChampion;
+//        while(counter < 3 ) {
+
+            System.out.println("Please Enter Your choice  :  -------IF YOU DON'T WANT TO ADD MORE CHAMPIONS PRESS ***0***------ ");
+            for(int i=0 ; i<3 ;i++){
+                pickedChampion = PickedChampion.get(i);
+                System.out.println(consoleGame.ConsoleColors.GREEN+pickedChampion+ consoleGame.ConsoleColors.RESET);
+                championChoices.add(pickedChampion);
+                int x =IndexesToDelete.get(pickedChampion-1);
+                championsForTempStore.remove(x);
+                System.out.println("Your champion Has been Added successfully! ");
+//            }
+//            counter = counter+1;
+
+
+//            if(pickedChampion == 0 ){
+//
+//                break;
+//            }
+//            else if(pickedChampion >5 || pickedChampion<0){
+//                System.out.println("Please enter a number between 1 -> 5 ");
+//            }
+//            else if(championChoices.contains(pickedChampion)){
+//
+//                System.err.println("You have Already chosen this Champion , Please Pick Another One.. ");
+//            }
+//            else{
+//                championChoices.add(pickedChampion);
+//                int x =IndexesToDelete.get(pickedChampion-1);
+//                championsForTempStore.remove(x);
+//                System.out.println("Your champion Has been Added successfully! ");
+//                counter = counter+1;
+//            }
+//        }
+
+//        System.out.println(championChoices);
+
+    }
+        System.out.println("tempstore get only"+PickedChampion);
+
+        return PickedChampion;
+
+    }
 
 
 

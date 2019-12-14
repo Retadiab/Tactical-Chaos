@@ -53,10 +53,39 @@ System.out.println(p1);
 
             else {
 
-                    for(Champion c : p.getArenaChampions())
 
-                        if(c.x==i && c.y == j )
-                        System.err.print("["+c.toInitials()+"P"+(p.getPlayerIndex())+"]");
+//                //print all champions
+//                for(Player playerForPrint: p1)   {
+//
+//                    for(Champion c : playerForPrint.getArenaChampions()) {
+//                        if (c.x == i && c.y == j)
+//                            System.err.print("[" + c.toInitials() + "P" + (playerForPrint.getPlayerIndex()) + "]");
+//
+//
+//                    }
+//
+//                }
+
+
+
+
+
+                    for(Champion c : p.getArenaChampions()) {
+                        if (c.x == i && c.y == j)
+                            System.err.print("[" + c.toInitials() + "P" + (p.getPlayerIndex()) + "]");
+
+
+                    }
+                    if(squares[i][j].getState() == State.Occupied){
+
+
+                        System.out.print("[###]");
+
+                    }
+
+
+
+
 //
 
 

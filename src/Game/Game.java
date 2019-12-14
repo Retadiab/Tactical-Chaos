@@ -76,6 +76,8 @@ public abstract class Game {
 
     public abstract class TacticalChaosTM extends RoundManager {};
 
+    public abstract boolean GameEnd(ArrayList<Player> playersOfTheGame);
+
     public abstract class RoundManager {
         ArrayList<Round> rounds =new ArrayList<Round>();
         public  ArrayList<Player> x = new ArrayList<Player>();
@@ -137,11 +139,15 @@ public abstract class Game {
 
 
 
-    public ArrayList<Player> initPlayers(){
+    public ArrayList<Player> initPlayers(int wayOfPlaying){
+
+
         System.out.println("please enter the number of players ");
-        System.out.println("Note : the number must be up to 8 ");
+        System.out.println(consoleGame.ConsoleColors.GREEN_BOLD+"Note :"+ consoleGame.ConsoleColors.RESET+" the number must be up to 8 ");
         numberOfPlayers= numberOfPlayers1.nextInt();
         this.numberOfPlayers3=numberOfPlayers;
+
+
         boolean wrongNum=false;
         if(numberOfPlayers > 8 || numberOfPlayers <= 1) {
             wrongNum=true;
@@ -159,27 +165,31 @@ public abstract class Game {
 
         }
 
+        if(wayOfPlaying==1)
 
-            ConsolePlayer p1 = new ConsolePlayer();
-//            p1.setIndex(1);
-//            System.out.println("player1 index"+p1.getIndex());
-            players.add(p1);
-//            System.out.println("player1  after adding"+p1.getIndex());
+        {
 
-            players.get(0).setPlayerIndex(1);
-//            System.out.println("player1 index"+players.get(0).getPlayerIndex());
+                    ConsolePlayer p1 = new ConsolePlayer();
+                    players.add(p1);
+                    players.get(0).setPlayerIndex(1);
 
-            for (int i =2; i <=numberOfPlayers; i++) {
+                    for (int i =2; i <=numberOfPlayers; i++) {
+                        AutoPlayer p = new AutoPlayer();
+                        p.setPlayerIndex(i);
+                        players.add(p);
+                    }
+
+        }
+        else
+        {
+
+            for (int i =1; i <=numberOfPlayers; i++) {
                 AutoPlayer p = new AutoPlayer();
                 p.setPlayerIndex(i);
-//                System.out.println("players from inital"+p.getPlayerIndex());
-
                 players.add(p);
             }
-//            System.out.println("players from inital1111111111111"+players);
+        }
 
-
-        System.out.println("players from inital"+players);
 
         return this.players;
 
