@@ -1,8 +1,9 @@
 package Damage;
 import Champion.* ;
 public class Level {
+
 // make champion level 2
-    public void Level2 (Champion champion)  {
+    public static void Level2 (Champion champion)  {
         //amplifying  basic attack by 10%
         champion.setBasicAttack((float) (champion.getBasicAttack() + ((champion.getBasicAttack() * 0.1 ))));
         //amplifying  armor by 20%
@@ -10,7 +11,7 @@ public class Level {
         //amplifying magic resist by 20%
         champion.setArmor((float) (champion.getArmor() + (champion.getArmor() * 0.20) ));
     }
-    public void Level3(Champion champion) {
+    public static void Level3(Champion champion) {
         //amplifying  basic attack by 15%
         champion.setBasicAttack((float) (champion.getBasicAttack() + ((champion.getBasicAttack() * 0.15 ))));
         //amplifying  armor by 25%

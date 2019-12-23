@@ -37,22 +37,6 @@ public abstract class Game {
     public  Player getRandomPlayer(ArrayList<Player> items) {
         this.IndexToDelete = new Random().nextInt(items.size());
         Player p = items.get(this.IndexToDelete);
-//        System.out.println(this.IndexToDelete);
-//        System.out.println(items.get(this.IndexToDelete));
-
-//        if(this.IndexToDelete == 0){
-//
-//            //something wrong !!!!!!!!!!!
-//            System.out.println("Please enter your NAME: ");
-//            String playerName = new String();
-//            playerName= PlayerName.nextLine();
-////            System.out.println(playerName);
-//            items.get(0).setName(playerName);
-//
-//        }
-
-
-
         return p;
     }
 
@@ -71,7 +55,7 @@ public abstract class Game {
 
     }
     abstract public void ApplyMove(Player p) throws IllegalSquare, IllegalGameMove;
-    abstract public Player takeTurns(ArrayList<Player> players);
+    abstract public Player takeTurns(ArrayList<Player> players,ArrayList<Player> TempPlayers);
 
 
     public abstract class TacticalChaosTM extends RoundManager {};
@@ -90,12 +74,12 @@ public abstract class Game {
             while(gamestate != GameState.endGame){
 
                 if( rounds.size()<9){
-                    Player currentPlayer = takeTurns(this.x);
+                    Player currentPlayer = takeTurns(this.x,null);
                     System.out.println("The Game choose Player "+ (this.x.indexOf(currentPlayer)+1)+"  to start >>>>>>>>>>>>");
 
                     Planning planningPhase1 = new Planning();
 
-                    planningPhase1.getChampionChoiceFromPhase1(planningPhase1.printPlanningListPhase1(),currentPlayer,arena, this.x);
+                    planningPhase1.getChampionChoiceFromPhase1(planningPhase1.printPlanningListPhase1(false),currentPlayer,arena, this.x,1,false);
 
 
                      rounds.add(planningPhase1);
@@ -103,7 +87,7 @@ public abstract class Game {
                 }
                 else {
 
-                    Player currentPlayer = takeTurns(this.x);
+                    Player currentPlayer = takeTurns(this.x,null);
                     Planning planningPhase2 = new Planning();
 //                    .getChampionChoiceFromPhase2(planningPhase2.printPlanningListPhase2(),currentPlayer,arena,getIndexOfPlayerToPrintItWithArena());
                     //how many times the champion could make a plane >> and when should i do the execute move ??

@@ -24,99 +24,212 @@ static Random r = new Random() ;
 
 
         ////zb6e l arena size
-         if((Attacker.x + Attacker.AttackRange ) < 13)
-         {
-        for(int i = Attacker.x ; i <= Attacker.x + Attacker.AttackRange ; i++ )
-            {
-                if (arena.getSquare(i , Attacker.y).getState() == SquaresState.Occupied){
+//         if((Attacker.x + Attacker.AttackRange ) < 13)
+////         {
+////        for(int i = Attacker.x ; i <= Attacker.x + Attacker.AttackRange ; i++ )
+////            {
+////                if (arena.getSquare(i , Attacker.y).getState() == SquaresState.Occupied){
+////
+////
+////
+////                            //                AttackableChampion.addAll(arena.getSquare(i, Attacker.y).getChampionsIn());
+////                            for(Champion c : arena.getSquare(i, Attacker.y).getChampionsIn())
+////                            {
+////
+////                                if(c.getPlayerId() == p.getPlayerIndex()){
+////                                    break;
+////                                }
+////                                else {
+////                                    AttackableChampion.add(c);
+////                                }
+////                            }
+////                  }
+////            }
+////        }
+////
+////         else
+////         {
+////             for(int i1 = Attacker.x ; i1 <= 13 ; i1++ )
+////             {
+////                 for(Champion c : arena.getSquare(i1, Attacker.y).getChampionsIn()){
+////
+////                 if(c.getPlayerId() == p.getPlayerIndex()){
+////
+////                     break;
+////
+////                 }
+////                 else {
+////
+////                     AttackableChampion.add(c);
+////
+////                 }
+////             }
+////         }
+////
+////         }
+////
+/////////zb6ehon mtl elle fo8
+////
+////        if (Attacker.y + Attacker.AttackRange < 54 ) {
+////            for (int j = Attacker.y; j <= Attacker.y + Attacker.AttackRange; j++) {
+////                if (arena.getSquare(Attacker.x, j).getState() == SquaresState.Occupied)
+////                {
+////
+////                    for(Champion c : arena.getSquare(Attacker.x, j).getChampionsIn())
+////                    {
+////
+////                        if(c.getPlayerId() == p.getPlayerIndex()){
+////                            break;
+////                        }
+////                        else {
+////                            AttackableChampion.add(c);
+////                        }
+////                    }
+////
+////                }
+////            }
+////        } else
+////        {
+////            for (int j = Attacker.y; j <= arena.getArenaSize(); j++) {
+////                if (arena.getSquare(Attacker.x, j).getState() == SquaresState.Occupied){
+////
+////
+////
+////                    for(Champion c : arena.getSquare(Attacker.x, j).getChampionsIn()){
+////
+////                        if(c.getPlayerId() == p.getPlayerIndex()){
+////
+////                            break;
+////
+////                        }
+////                        else {
+////
+////                            AttackableChampion.add(c);
+////
+////                        }
+////                    }
+////
+////                }
+////            }
+////        }
+////
+////
+////
+////
+////          if( Attacker.x - (int) Attacker.AttackRange > 0 )
+////          {
+////              for(int i =( Attacker.x - (int) Attacker.AttackRange ); i <= Attacker.x  ; i++ )
+////              {
+////                  if (arena.getSquare(i , Attacker.y).getState() == SquaresState.Occupied){
+////
+////
+////                      for(Champion c : arena.getSquare(i , Attacker.y).getChampionsIn()){
+////
+////                          if(c.getPlayerId() == p.getPlayerIndex()){
+////
+////                              break;
+////
+////                          }
+////                          else {
+////
+////                              AttackableChampion.add(c);
+////
+////                          }
+////                      }
+////                  }
+////              }
+////          }else
+////          {
+////              for(int i =0; i <= Attacker.x  ; i++ )
+////              {
+////                  if (arena.getSquare(i , Attacker.y).getState() == SquaresState.Occupied){
+////
+////                      for(Champion c : arena.getSquare(i , Attacker.y).getChampionsIn()){
+////
+////                          if(c.getPlayerId() == p.getPlayerIndex()){
+////
+////                              break;
+////
+////                          }
+////                          else {
+////
+////                              AttackableChampion.add(c);
+////
+////                          }
+////                      }
+////
+////
+////                  }
+////                      AttackableChampion.addAll(arena.getSquare(i, Attacker.y).getChampionsIn());
+////              }
+////          }
+////
+////
+////
+////        if (Attacker.y - (int)Attacker.AttackRange >0 ) {
+////            for (int j = Attacker.y - (int) Attacker.AttackRange; j <= Attacker.y; j++) {
+////                if (arena.getSquare(Attacker.x, j).getState() == SquaresState.Occupied){
+////
+////
+////                    for(Champion c : arena.getSquare(Attacker.x, j).getChampionsIn()){
+////
+////                        if(c.getPlayerId() == p.getPlayerIndex()){
+////
+////                            break;
+////
+////                        }
+////                        else {
+////
+////                            AttackableChampion.add(c);
+////
+////                        }
+////                    }
+////                }
+////            }
+////        }
+////        else
+////        {
+////            for (int j =0; j <= Attacker.y; j++) {
+////                if (arena.getSquare(Attacker.x, j).getState() == SquaresState.Occupied){
+////
+////
+////                    for(Champion c : arena.getSquare(Attacker.x, j).getChampionsIn()){
+////
+////                        if(c.getPlayerId() == p.getPlayerIndex()){
+////
+////                            break;
+////
+////                        }
+////                        else {
+////
+////                            AttackableChampion.add(c);
+////
+////                        }
+////                    }
+////
+////                }
+////            }
+////        }
 
 
 
-                            //                AttackableChampion.addAll(arena.getSquare(i, Attacker.y).getChampionsIn());
-                            for(Champion c : arena.getSquare(i, Attacker.y).getChampionsIn())
-                            {
 
-                                if(c.getPlayerId() == p.getPlayerIndex()){
-                                    break;
-                                }
-                                else {
-                                    AttackableChampion.add(c);
-                                }
-                            }
-                  }
+
+            int stX = Attacker.x - (int)Attacker.AttackRange;
+            if(stX<0) stX = 0;
+            if(stX > 14) stX = 14;
+
+            int  stY = Attacker.y - (int)Attacker.AttackRange;
+                    if(stY<0) stY = 0;
+                    if(stY > 55) stY = 55;
+
+        for (int i = stX; i < (int)Attacker.AttackRange*2 && i < 14; i++) {
+            for (int j = stY; j<(int)Attacker.AttackRange*2 && j<55; j++) {
+             //   if(square[stX][stY].state == state.ocuppied)
             }
         }
 
-         else
-         {
 
-         }
-             for(int i1 = Attacker.x ; i1 <= 13 ; i1++ )
-             {
-                 for(Champion c : arena.getSquare(i1, Attacker.y).getChampionsIn()){
-
-                     if(c.getPlayerId() == p.getPlayerIndex()){
-
-                         break;
-
-                     }
-                     else {
-
-                         AttackableChampion.add(c);
-
-                     }
-             }
-         }
-
-/////zb6ehon mtl elle fo8
-
-        if (Attacker.y + Attacker.AttackRange < arena.getArenaSize() ) {
-            for (int j = Attacker.y; j <= Attacker.y + Attacker.AttackRange; j++) {
-                if (arena.getSquare(Attacker.x, j).getState() == SquaresState.Occupied)
-                    AttackableChampion.addAll(arena.getSquare(Attacker.x, j).getChampionsIn());
-            }
-        } else
-        {
-            for (int j = Attacker.y; j <= arena.getArenaSize(); j++) {
-                if (arena.getSquare(Attacker.x, j).getState() == SquaresState.Occupied)
-                    AttackableChampion.addAll(arena.getSquare(Attacker.x, j).getChampionsIn());
-            }
-        }
-
-
-
-
-          if( Attacker.x - (int) Attacker.AttackRange > 0 )
-          {
-              for(int i =( Attacker.x - (int) Attacker.AttackRange ); i <= Attacker.x  ; i++ )
-              {
-                  if (arena.getSquare(i , Attacker.y).getState() == SquaresState.Occupied)
-                      AttackableChampion.addAll(arena.getSquare(i, Attacker.y).getChampionsIn());
-              }
-          }else
-          {
-              for(int i =0; i <= Attacker.x  ; i++ )
-              {
-                  if (arena.getSquare(i , Attacker.y).getState() == SquaresState.Occupied)
-                      AttackableChampion.addAll(arena.getSquare(i, Attacker.y).getChampionsIn());
-              }
-          }
-
-
-
-        if (Attacker.y - (int)Attacker.AttackRange >0 ) {
-            for (int j = Attacker.y - (int) Attacker.AttackRange; j <= Attacker.y; j++) {
-                if (arena.getSquare(Attacker.x, j).getState() == SquaresState.Occupied)
-                    AttackableChampion.addAll(arena.getSquare(Attacker.x, j).getChampionsIn());
-            }
-        }
-        else
-        {
-            for (int j =0; j <= Attacker.y; j++) {
-                if (arena.getSquare(Attacker.x, j).getState() == SquaresState.Occupied)
-                    AttackableChampion.addAll(arena.getSquare(Attacker.x, j).getChampionsIn());
-            }
-        }
         return AttackableChampion ;
     }
 

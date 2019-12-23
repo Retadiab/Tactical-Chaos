@@ -2,6 +2,7 @@ package Champion;
 
 
 //import Damage.DamageCalculator;
+import Damage.Level;
 import Move.Move;
 
 import java.util.ArrayList;
@@ -111,7 +112,6 @@ public class Champion {
          this.ManaCost =ManaCost1;
          this.championAbility = championAbility1;
          this.Mana=this.ManaStart;
-
          this.championLevel = 1;
 
      }
@@ -170,6 +170,10 @@ public class Champion {
 
 
 
+    public void incrementLevel()
+    {
+        this.championLevel++;
+    }
     public void printChamp(Champion c){
          System.out.println(c.toString());
     }

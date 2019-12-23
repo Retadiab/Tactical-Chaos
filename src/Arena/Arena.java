@@ -53,14 +53,15 @@ public  class Arena {
                 else if(squares[i][j].getState() == State.Occupied) {
 
                     for(Champion c : squares[i][j].getChampionsIn()){
-                        System.err.print(" | [" + c.toInitials() + "P" + c.getPlayerId() +"] |");
+                        System.err.print("| [" + c.toInitials() + "P" + c.getPlayerId() +"] |");
 
 
                     }
+                    continue;
 
                 }
                 else {
-                    System.err.print("");
+                    System.err.print("squares[i][j]");
 
 
                 }
@@ -75,7 +76,6 @@ public  class Arena {
     public void printArena(Player p ) {
 
 
-
         for (int i = 0; i < 14; i++) {
             for (int j = 0; j < 55; j++) {
 
@@ -85,34 +85,30 @@ public  class Arena {
 
                 }
                 else if(squares[i][j].getState() == State.Occupied) {
-                    for(Champion c1 :squares[i][j].getChampionsIn() ){
+
+                    for(Champion c : squares[i][j].getChampionsIn()){
+
+                        if(c.playerId == p.getPlayerIndex()) {
+                            System.err.print(" | [" + c.toInitials() + "P" + c.getPlayerId() + "] |");
 
 
-                        for(Champion c : p.getArenaChampions()){
+                        }else
+                            System.out.print("| [###] |");
 
 
-                            if (c.equals(c1))
-
-                                System.err.print(" | [" + c.toInitials() + "P" + c.getPlayerId() +"] |");
-
-                            else
-                                System.out.print("| [###] |");
-
-                        }
                     }
 
 
                 }
-                else {
-                    System.err.print("| [###] |");
-
-
-                }
+//                else {
+//                    System.err.print("");
+//
+//
+//                }
             }
             System.out.println("");
 
         }
-
     }
 
 
