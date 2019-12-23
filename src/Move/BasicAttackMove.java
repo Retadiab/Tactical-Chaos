@@ -143,12 +143,6 @@ static Random r = new Random() ;
     }
 
 
-
-
-
-
-
-
     public static int   getRandom(int h , int l)
     {
         return r.nextInt((h-l)+1)+l ;}
