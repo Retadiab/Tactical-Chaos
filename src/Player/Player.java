@@ -10,7 +10,15 @@ public abstract class Player {
     Bench playerBench = new Bench();
     ArrayList<Champion> currentChampions = new ArrayList<Champion>();
     ArrayList<Champion> arenaChampions = new ArrayList<Champion>();
+    public int getCoins() {
+        return coins;
+    }
 
+    public void setCoins(int coins) {
+        this.coins = coins;
+    }
+
+    int coins =2;
     public int getPlayerIndex() {
         return PlayerIndex;
     }

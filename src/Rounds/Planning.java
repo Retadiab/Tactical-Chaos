@@ -22,6 +22,8 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
+import static Damage.Level.Level2;
+
 public class Planning extends Round{
      private boolean err =false;
     static Scanner x =new Scanner(System.in);
@@ -42,10 +44,14 @@ public class Planning extends Round{
 
 
 
+    public static int   getRandom(int l , int h)
+    {
+        return r.nextInt((h-l)+1)+l ;}
+
     private int newField(){return 0;};
     public void GetTemporalList(){};
 
-    public int printPlanningListPhase1(){
+    public int printPlanningListPhase1(boolean phase2){
         if(this.err){
             System.out.println(consoleGame.ConsoleColors.CYAN_BOLD+"1-"+ consoleGame.ConsoleColors.RESET +" Buy champions.");
         }
@@ -55,6 +61,13 @@ public class Planning extends Round{
         }
 
         System.out.println(consoleGame.ConsoleColors.CYAN_BOLD+"2-"+ consoleGame.ConsoleColors.RESET +"Place your champions.");
+
+
+        if(phase2)
+        System.out.println(consoleGame.ConsoleColors.CYAN_BOLD+"3-"+ consoleGame.ConsoleColors.RESET +"Sell champions.");
+
+
+
         System.out.println("Your choice is: ");
         int userChoice= x.nextInt();
         return userChoice;
@@ -62,12 +75,14 @@ public class Planning extends Round{
 
     public int printPlanningListPhase2MovesList(){
 
-        System.err.println("Please choose your plan: ");
+//        System.err.println("Please choose your plan: ");
         System.out.println("1- Sell champions.");
         System.out.println("2- Walk move.");
         System.out.println("3- Attack a champion.");
         System.out.println("4- Use ability for specific champion.");
-        System.out.println("5- Swap");
+        System.out.println("5- Swap.");
+        System.out.println("6- None.");
+
         System.out.println("Your choice is: ");
 
 
@@ -98,7 +113,95 @@ public class Planning extends Round{
 //
 //
 //    }
-public boolean getChampionChoiceFromPhase1(int userChoice, Player p, Arena arena, ArrayList<Player> indexOfPlayerToPrintItWithArena){
+
+
+    public boolean levelup(Champion c, Player p)
+    {
+        String champname = c.championName;
+
+        int benchCounter =0; int arenaCounter=0;
+        for(Champion cc: p.getBenchChampions())
+        {
+            if (cc.championName == champname)
+            {
+                benchCounter++;
+            }
+        }
+        Champion tempchamp =  new Champion();
+        for(Champion cc: p.getArenaChampions())
+        {
+            if (cc.championName == champname)
+            {
+                arenaCounter++;
+
+                tempchamp.x = cc.x;
+                tempchamp.y = cc.y;
+
+            }
+        }
+        if(benchCounter==1 && arenaCounter ==1)
+        {
+            c.x = tempchamp.x;
+            c.y = tempchamp.y;
+            Level2(c);
+            for(Champion cc: p.getBenchChampions())
+            {
+                if (cc.championName == champname)
+                {
+                    p.getBenchChampions().remove(cc);
+                    break;
+                }
+            }
+            for(Champion cc: p.getArenaChampions())
+            {
+                if (cc.championName == champname)
+                {
+                    p.getArenaChampions().remove(cc);
+                    break;
+                }
+            }
+            p.getCurrentChampions().add(c);
+            p.getArenaChampions().add(c);
+            return true;
+        }
+        else if(benchCounter ==2)
+        {
+
+            Level2(c);
+            ArrayList<Champion> toremove= new ArrayList<>();
+            for(Champion cc: p.getBenchChampions())
+            {
+                if (cc.championName == champname)
+                {
+                    toremove.add(cc);
+                }
+            }
+            p.getBenchChampions().removeAll(toremove);
+            p.getCurrentChampions().add(c);
+            p.getBenchChampions().add(c);
+            return true;
+        }
+        else if (arenaCounter==2)
+        {
+            c.x = tempchamp.x;
+            c.y = tempchamp.y;
+            Level2(c);
+            ArrayList<Champion> toremove= new ArrayList<>();
+            for(Champion cc: p.getArenaChampions())
+            {
+                if (cc.championName == champname)
+                {
+                    toremove.add(cc);
+                }
+            }
+            p.getArenaChampions().removeAll(toremove);
+            p.getCurrentChampions().add(c);
+            p.getArenaChampions().add(c);
+            return true;
+        }
+        return false;
+    }
+public boolean getChampionChoiceFromPhase1(int userChoice, Player p, Arena arena, ArrayList<Player> indexOfPlayerToPrintItWithArena,int wayOfPlanning, boolean phase2){
 
 boolean isRound = false;
 
@@ -126,15 +229,23 @@ boolean isRound = false;
                     }
                     else {
                         System.out.println("champions array size" + p.getBenchChampions().size());
+
+
                         addedChampions = move1.doBuying(5);
+                        ArrayList<Champion> leveledup = new ArrayList<>();
                         for(Champion c1 : addedChampions){
 
                             c1.setPlayerId(p.getPlayerIndex());
+
 //                            System.out.println("champions with player id : "+c1.getPlayerId());
+                            if(levelup(c1,p))
+                            {
+                                leveledup.add(c1);
+                            }
 
 
                         }
-
+                        addedChampions.removeAll(leveledup);
 
                         p.getCurrentChampions().addAll(addedChampions);
                         p.getBenchChampions().addAll(addedChampions);
@@ -241,6 +352,43 @@ boolean isRound = false;
                 break;
             }
 
+
+
+
+            case (3):{
+
+
+
+                if(phase2){
+                    SellMove move1 = new SellMove();
+                    Champion sell = new Champion();
+                    if(wayOfPlanning==1){
+                        sell =move1.printLisForSellMove(p,arena);
+                        move1.PerformMove(p,arena,sell);
+                    }
+                    else {
+
+                        sell = move1.printLisForSellMoveForAutoPlayer(p,arena);
+                        move1.PerformMoveForAutoPlayer(p,arena,sell);
+                    }
+
+                    System.out.println("Selling move must be running right now");
+
+                    break;
+                }else {
+
+
+                    System.out.println("Please enter a right number");
+                    isRound=false;
+                }
+
+
+                break;
+
+
+            }
+
+
             default:{
                 System.out.println("Please enter a right number");
                 isRound=false;
@@ -255,74 +403,34 @@ boolean isRound = false;
 return isRound;
     }
 
-    public     String  getChampionChoiceFromPhase2(int userChoice , Player player, Arena arena , ArrayList<Player> indexOfPlayerToPrintItWithArena,Champion c){
+    public     String  getChampionChoiceFromPhase2(int userChoice , Player player, Arena arena , ArrayList<Player> indexOfPlayerToPrintItWithArena,Champion c,int wayOfPlanning){
         boolean isRound = false;
         String moveAsString =new String();
 
 
         switch (userChoice) {
             case (1): {
+//                moveAsString = moveAsString+"S";
 //                SellMove move1 = new SellMove();
-                moveAsString = moveAsString+"S";
+//                String s = new String();
+//                if(wayOfPlanning==1){
+//                    s=move1.printLisForSellMove(player,arena);
+//
+//                    moveAsString = moveAsString+s;
+//
+//                }
+//                else {
+//
+//                    s=move1.printLisForSellMoveForAutoPlayer(player,arena);
+//                    moveAsString = moveAsString+s;
+//
+//                }
 
                 System.out.println("Selling move must be running right now");
 
                 break;
             }
 
-
-
-
-//            case (2): {
-////                BuyMove move2 = new BuyMove();
-//                moveAsString = moveAsString+"T";
-//
-//                ///ro7y jebeha mn hnek
-//                System.out.println("Buying move must be running right now");
-//                TemporalStoreFilter tempStore = new TemporalStoreFilter();
-//
-//                ArrayList<Champion> addedChampions = new ArrayList<Champion>();
-//                BuyMove move1 = new BuyMove();
-//
-////                System.out.println(addedChampions);
-//                if(player.getBenchChampions().size()<=9) {
-//                    if(player.getBenchChampions().size()==9){
-//                        System.err.println("Your Bench is full, Please place some Champions to free some spaces in the Bench!!! ");
-//                        this.err=true;
-//                        break;
-//                    }
-//                    System.out.println("champions array size"+player.getBenchChampions().size());
-//                    addedChampions = move1.doBuying(5);
-//                    String planForBuying = new String();
-//                    planForBuying= "BuyChampions:  ";
-//                    for(int i1 =0 ; i1 <addedChampions.size(); i1++)
-//                    {
-//                        planForBuying = planForBuying + addedChampions.get(i1).toString()+"\n";
-//                    }
-//                    System.out.println(planForBuying);
-//                    plan.add(planForBuying);
-//
-//                    player.getCurrentChampions().addAll(addedChampions);
-//                    player.getBenchChampions().addAll(addedChampions);
-//
-//
-//
-//                }
-//
-//
-//
-//                if(player.getBenchChampions().size()>9){
-//
-//                    System.err.println("Your Bench is full, Please place some Champions to free some spaces in the Bench!!! ");
-//                    this.err=true;
-//                }
-//
-//                break;
-//
-//
-//
-//
-//            }
             case (2): {
 
                 moveAsString = moveAsString+"W";
@@ -359,6 +467,9 @@ return isRound;
                 String championAsString = new String();
                 championAsString= c.championName.substring(0,3);
                 moveAsString = moveAsString+championAsString;
+
+
+
                 System.out.println("The Champions on your Attack Range Are: ");
 
                 BasicAttackMove move = new BasicAttackMove();
@@ -480,6 +591,12 @@ return isRound;
                 System.out.println("swaaaaap");
                 break;
             }
+            case (6):{
+
+                moveAsString = moveAsString+"N";
+                break;
+
+            }
             default:
                 System.out.println("Please enter a right number");
 
@@ -510,32 +627,20 @@ return moveAsString;
 
             }
 
-
-
-
-
-
-//            System.out.println(consoleGame.ConsoleColors.PURPLE_UNDERLINED+"Phase 1 is running, please choose your movement: "+ consoleGame.ConsoleColors.RESET);
-//            System.out.println(consoleGame.ConsoleColors.CYAN_BOLD+"1-"+ consoleGame.ConsoleColors.RESET +" Buy champions.");
-//            System.out.println(consoleGame.ConsoleColors.CYAN_BOLD+"2-"+ consoleGame.ConsoleColors.RESET +"Place your champions.");
-            System.err.println("place move");
             PlaceMove move2  = new PlaceMove();
-            int xCoor = ThreadLocalRandom.current().nextInt(0, 13);
-            int yCoor = ThreadLocalRandom.current().nextInt(0, 50);
+            int xCoor = getRandom(0,13);
+            int yCoor = getRandom(0,54);
+            System.out.println("x"+xCoor);
+            System.out.println("y:"+yCoor);
+
 
             boolean placeMove;
             placeMove = move2.placeMove(xCoor,yCoor,p.getBenchChampions().get(0),arena,indexOfPlayerToPrintItWithArena,p);
-//                   System.out.println("she lazm estfed nno" + p.getBenchChampions().get(indexOfChosenChampion-1));
             if(placeMove){
-
-
                 Champion championToDeleteFromBench = new Champion();
                 championToDeleteFromBench =  p.getBenchChampions().get(0);
                 p.getBenchChampions().remove(championToDeleteFromBench);
                 p.setArenaChampions(championToDeleteFromBench);
-//               System.out.println("player int placemove"+p.getPlayerIndex());
-//               System.out.println("player as palyer"+p);
-//               System.out.println("Arraylist as palyer"+indexOfPlayerToPrintItWithArena);
                 arena.printArena(p);
 
             }
@@ -543,40 +648,22 @@ return moveAsString;
 
         }
 
-
-
-
-//        //doing place move for 4 times after each other
-//       for (int j =0 ; j<4;j++){
-//           System.out.println(consoleGame.ConsoleColors.PURPLE_UNDERLINED+"Phase 1 is running, please choose your movement: "+ consoleGame.ConsoleColors.RESET);
-//           System.out.println(consoleGame.ConsoleColors.CYAN_BOLD+"1-"+ consoleGame.ConsoleColors.RESET +" Buy champions.");
-//           System.out.println(consoleGame.ConsoleColors.CYAN_BOLD+"2-"+ consoleGame.ConsoleColors.RESET +"Place your champions.");
-//           PlaceMove move2  = new PlaceMove();
-//           int xCoor = ThreadLocalRandom.current().nextInt(0, 13);
-//           int yCoor = ThreadLocalRandom.current().nextInt(0, 50);
+//       System.out.println(consoleGame.ConsoleColors.PURPLE_UNDERLINED+"Phase 1 is running, please choose your movement: "+ consoleGame.ConsoleColors.RESET);
+//       System.out.println(consoleGame.ConsoleColors.CYAN_BOLD+"1-"+ consoleGame.ConsoleColors.RESET +" Buy champions.");
+//       System.out.println(consoleGame.ConsoleColors.CYAN_BOLD+"2-"+ consoleGame.ConsoleColors.RESET +"Place your champions.");
 //
-//           boolean placeMove;
-//           placeMove = move2.placeMove(xCoor,yCoor,p.getBenchChampions().get(0),arena,indexOfPlayerToPrintItWithArena,p);
-////                   System.out.println("she lazm estfed nno" + p.getBenchChampions().get(indexOfChosenChampion-1));
-//           if(placeMove){
+//       ArrayList<Champion> addedChampions = new ArrayList<Champion>();
+//       BuyMove move1 = new BuyMove();
+//       addedChampions = move1.doBuyingForAutoPlayer(5);
+//       p.getCurrentChampions().addAll(addedChampions);
+//       p.getBenchChampions().addAll(addedChampions);
+//       for(Champion c1 : addedChampions){
 //
-//
-//               Champion championToDeleteFromBench = new Champion();
-//               championToDeleteFromBench =  p.getBenchChampions().get(0);
-//               p.getBenchChampions().remove(championToDeleteFromBench);
-//               p.setArenaChampions(championToDeleteFromBench);
-////               System.out.println("player int placemove"+p.getPlayerIndex());
-////               System.out.println("player as palyer"+p);
-////               System.out.println("Arraylist as palyer"+indexOfPlayerToPrintItWithArena);
-//               arena.printArena();
-//
-//           }
+//           c1.setPlayerId(p.getPlayerIndex());
+////                System.err.println("champions with player id : "+c1.getPlayerId());
 //
 //
 //       }
-
-
-//        System.out.println("chamoipns on the Auto player"+p.getBenchChampions());
         return true;
             }
 

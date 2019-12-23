@@ -156,8 +156,9 @@ public class TemporalStoreFilter extends StoreFilter {
         int pickedChampion;
 //        while(counter < 3 ) {
 
-            System.out.println("Please Enter Your choice  :  -------IF YOU DON'T WANT TO ADD MORE CHAMPIONS PRESS ***0***------ ");
             for(int i=0 ; i<2 ;i++){
+                System.out.println("Please Enter Your choice  :  -------IF YOU DON'T WANT TO ADD MORE CHAMPIONS PRESS ***0***------ ");
+
                 pickedChampion = PickedChampion.get(i);
                 if(pickedChampion == 0 ){
                     PickedChampion.remove(i);
@@ -165,34 +166,14 @@ public class TemporalStoreFilter extends StoreFilter {
                 }
                 System.out.println(consoleGame.ConsoleColors.GREEN+pickedChampion+ consoleGame.ConsoleColors.RESET);
                 championChoices.add(pickedChampion);
+                System.out.println("Your champion Has been Added successfully! ");
+
                 int x =IndexesToDelete.get(pickedChampion-1);
                 championsForTempStore.remove(x);
-                System.out.println("Your champion Has been Added successfully! ");
-//            }
-//            counter = counter+1;
-
-
-
-//            else if(pickedChampion >5 || pickedChampion<0){
-//                System.out.println("Please enter a number between 1 -> 5 ");
-//            }
-//            else if(championChoices.contains(pickedChampion)){
-//
-//                System.err.println("You have Already chosen this Champion , Please Pick Another One.. ");
-//            }
-//            else{
-//                championChoices.add(pickedChampion);
-//                int x =IndexesToDelete.get(pickedChampion-1);
-//                championsForTempStore.remove(x);
-//                System.out.println("Your champion Has been Added successfully! ");
-//                counter = counter+1;
-//            }
-//        }
-
-//        System.out.println(championChoices);
 
     }
-        System.out.println("tempstore get only"+PickedChampion);
+//        System.out.println("Please Enter Your choice  :  -------IF YOU DON'T WANT TO ADD MORE CHAMPIONS PRESS ***0***------ ");
+        System.out.println(consoleGame.ConsoleColors.GREEN+"0"+ consoleGame.ConsoleColors.RESET);
 
         return PickedChampion;
 
@@ -203,6 +184,34 @@ public class TemporalStoreFilter extends StoreFilter {
 
 
 
+    public ArrayList<Champion> GetOnlyForGUI(){
+
+
+        championsListFromStore = GetChampionsList();
+        int championList = 47, copyOfEachChampionInMainStore = 10;
+        ArrayList <Champion> mainstore;
+
+
+        for (int i = 1; i < championList ; i++) {
+            for (int j = 0; j < copyOfEachChampionInMainStore; j++) {
+                Champion champ = new Champion();
+                championsForTempStore.add(championsListFromStore.get(i));
+            }
+
+        }
+
+
+//            System.out.println(championsForTempStore);
+        for(int i1=0 ; i1<5 ;i1++){
+            championsForTempStore1.add(getRandomChestItem(championsForTempStore));
+            IndexesToDelete.add(this.IndexToDelete);
+
+        }
+
+
+        return championsForTempStore1;
+
+    }
 
 
     public static void main(String[] args) {

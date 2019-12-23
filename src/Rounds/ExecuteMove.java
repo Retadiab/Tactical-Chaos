@@ -234,27 +234,24 @@ ArrayList<String> plan = new ArrayList<String>();
 
 
 
-    public boolean executeMove (ArrayList<String> plan  , Arena arena , Player p1 , ArrayList<Player> players){
+    public boolean executeMove (ArrayList<String> plan  , Arena arena , Player p1 , ArrayList<Player> players,int wayOfPlaying){
 
 
       boolean done = false;
         for(int i =0 ; i <plan.size(); i++){
 
             String move = new String();
-            move = plan.get(i).substring(0,1);
+//            move = plan.get(i).substring(0,1);
             switch (move){
 
-                case "S":{
-
-                done =true;
-                break;
-                }
                 case "T":{
 
                     done = true;
 
                 }
                 case "W":{
+
+                    System.out.println("Walk move must be runing right now ");
 
                     boolean championIsHere = false;
 
@@ -285,6 +282,9 @@ ArrayList<String> plan = new ArrayList<String>();
                 case "A":
 
                     {
+
+                        System.out.println("Attack move must be runing right now ");
+
                         String parametersA = new String();
 
                         boolean championIsHere = false;
@@ -340,6 +340,7 @@ ArrayList<String> plan = new ArrayList<String>();
                      }
 
                 case "B": {
+                    System.out.println("Ability move must be runing right now ");
 
                     String parametersB = new String();
 
@@ -383,7 +384,10 @@ ArrayList<String> plan = new ArrayList<String>();
                     break;
 
                 }
-
+                case "N":{
+                    done=true;
+                    break;
+                }
 
 
 
@@ -406,7 +410,7 @@ return done;
         ExecuteMove x = new ExecuteMove();
         ArrayList<String> s = new ArrayList<String>();
         s.add("WAat4");
-        x.executeMove(s,null,null,null);
+//        x.executeMove(s,null,null,null);
     }
 
 

@@ -23,48 +23,33 @@ public class MoveFactory {
     public  void createAbilityMove(Champion champion , Arena arena , Player p1 , ArrayList<Player> players){
 
         switch (champion.championId) {
-            case (1) :
-            {
-                System.out.println("Ability of "+champion.championName+"must be activate ");
+            case (1): {
+                System.out.println("Ability of " + champion.championName + "must be activate ");
                 break;
             }
-            case (2) :
-            {
+            case (2): {
 
                 int x;
-                System.out.println("Ability of "+champion.championName+"must be activate ");
+                System.out.println("Ability of " + champion.championName + "must be activate ");
                 break;
             }
-            case (3) :
-            {
-////                Scanner d = new Scanner(System.in);
-////                int id ;
-////                System.out.println("where did you want to move ? ");
-////                System.out.println(" 1-move up \n 2-move down \n 3-move left \n 4-move right");
-////                System.out.print("your choice :");
-////                id = d.nextInt() ;
-//                WalkMove move = new WalkMove();
-//                move.PerformMove(champion , 1 , arena,p1,players);
-//                break;
-                System.out.println("Ability of "+champion.championName+"must be activate ");
+            case (3): {
+                System.out.println("Ability of " + champion.championName + "must be activate ");
                 break;
             }
-            case (4) :
-            {
-                System.out.println("Ability of "+champion.championName+"must be activate ");
+            case (4): {
+                System.out.println("Ability of " + champion.championName + "must be activate ");
                 break;
             }
 
 
-            case (5):
-            {
-                System.out.println("Ability of "+champion.championName+"must be activate ");
+            case (5): {
+                System.out.println("Ability of " + champion.championName + "must be activate ");
                 break;
             }
 
 
-            case (6) :
-            {
+            case (6): {
 //                Scanner Sx = new Scanner(System.in) ;
 //                Scanner Sy = new Scanner(System.in) ;
 //                int x ;
@@ -78,25 +63,25 @@ public class MoveFactory {
 //                break;
 
 
-                    System.out.println("Ability of "+champion.championName+"must be activate ");
-                    break;
+                System.out.println("Ability of " + champion.championName + "must be activate ");
+                break;
 
 
             }
 
-            case (7) :
-            {
+            case (7): {
 
-                    System.out.println("Ability of "+champion.championName+"must be activate ");
-                    break;
+                System.out.println("Ability of " + champion.championName + "must be activate ");
+                break;
 
 
             }
 
-            default:
-                throw new IllegalStateException("Unexpected value: " + champion.championId);
+            default: {
+//                throw new IllegalStateException("Unexpected value: " + champion.championId);
+            break;
+            }
         }
-
     }
 
     public static void main(String[] args) {
