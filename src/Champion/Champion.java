@@ -3,6 +3,7 @@ package Champion;
 
 //import Damage.DamageCalculator;
 import Damage.Level;
+import Items.Item;
 import Move.Move;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class Champion {
     public String championClass2;
 
     public float health ;
+    public float maxhealth = health ;
     public float Armor ;
     public float MagicResist;
     public float  VisionRange;
@@ -37,6 +39,12 @@ public class Champion {
     private float Mana;
     public int x ;
     public int y ;
+    public String extraclass1 ;
+    public String extraclass2 ;
+    public String extraclass3 ;
+    public ArrayList<Item> items ;
+
+
 
     public int getPlayerId() {
         return playerId;

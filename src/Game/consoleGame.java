@@ -287,7 +287,7 @@ public class consoleGame extends Game{
 
 
             ////************************************phase 2***********************************
-
+                System.out.println("Welcome to phase 2: ");
 
                   int counterForTheGame =0 ;
                     while ((!GameEnd(playersOfTheGame) ) || (counterForTheGame == playersOfTheGame.size()*11 )) {
@@ -301,7 +301,6 @@ public class consoleGame extends Game{
                                 System.out.println(ConsoleColors.YELLOW + "=====================================================" + ConsoleColors.RESET);
                                 System.out.println(ConsoleColors.GREEN + "Choose one move for champion " + c.championName + ConsoleColors.RESET);
                                 System.out.println(ConsoleColors.YELLOW + "=====================================================" + ConsoleColors.RESET);
-                                        System.err.println("Please choose your plan: ");
 
                                 s = plan.getChampionChoiceFromPhase2(plan.printPlanningListPhase2MovesList(), p, arena, playersOfTheGame, c,wayOfPlaying);
 //                                System.err.println("the move as string" + s);

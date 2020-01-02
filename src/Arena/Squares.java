@@ -2,6 +2,7 @@ package Arena;
 
 import Arena.SquaresState;
 import Champion.Champion;
+import Items.Item;
 import Move.PlaceMove;
 import Player.Player;
 
@@ -26,6 +27,7 @@ public class Squares {
 
     private int x;
     private int y;
+    public Item item ;
     SquaresState state;
 
     public Squares(int i , int j ) {

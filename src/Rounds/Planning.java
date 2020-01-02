@@ -75,7 +75,7 @@ public class Planning extends Round{
 
     public int printPlanningListPhase2MovesList(){
 
-//        System.err.println("Please choose your plan: ");
+        System.err.println("Please choose your plan: ");
         System.out.println("1- Sell champions.");
         System.out.println("2- Walk move.");
         System.out.println("3- Attack a champion.");
