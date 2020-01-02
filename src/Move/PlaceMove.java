@@ -15,7 +15,7 @@ boolean donePlaced = false;
     public boolean placeMove(int x , int y , Champion p, Arena a , ArrayList<Player> players , Player playerForSquare){
 
 
-
+                System.out.println(x + " " + y);
                 a.getSquare(x,y).setChampionsIn(p);
                 a.getSquare(x,y).setPlayersIn(playerForSquare);
 
@@ -39,5 +39,20 @@ boolean donePlaced = false;
         return donePlaced =true;
 
     }
+    public boolean placeMoveForWalkMove(int x , int y , Champion p, Arena a , ArrayList<Player> players , Player playerForSquare){
 
+        System.out.println(x + " " + y);
+        a.getSquare(x,y).setChampionsIn(p);
+        a.getSquare(x,y).setPlayersIn(playerForSquare);
+
+
+//                System.out.println("champions on araena");
+//                System.out.println(a.getSquare(x,y).getPlayersIn());
+        p.x = x ;
+        p.y = y ;
+        a.getSquare(x,y).setState(SquaresState.Occupied);
+        //remember to delete the champoin from the old square cuz i used your placemove in walkmove :P
+        return donePlaced =true;
+
+    }
 }

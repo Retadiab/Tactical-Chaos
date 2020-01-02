@@ -1,7 +1,7 @@
 package Exceptions;
 
-public class TacticalChaosGameException extends Exception {
+public class TacticalChaosGameException {
     public TacticalChaosGameException(String s) {
-        super(s);
+
     }
 }

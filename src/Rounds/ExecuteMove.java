@@ -234,14 +234,18 @@ ArrayList<String> plan = new ArrayList<String>();
 
 
 
-    public boolean executeMove (ArrayList<String> plan  , Arena arena , Player p1 , ArrayList<Player> players,int wayOfPlaying){
+    public boolean executeMove (String plan  , Arena arena , Player p1 , ArrayList<Player> players,int wayOfPlaying){
 
 
       boolean done = false;
-        for(int i =0 ; i <plan.size(); i++){
 
-            String move = new String();
+//      System.out.println("plan size" + plan.size());
+//        for(int i =0 ; i <plan.size(); i++){
+//
+//            String move = new String();
 //            move = plan.get(i).substring(0,1);
+        String move = new String();
+        move = plan.substring(0,1);
             switch (move){
 
                 case "T":{
@@ -256,7 +260,8 @@ ArrayList<String> plan = new ArrayList<String>();
                     boolean championIsHere = false;
 
                     String parameters = new String();
-                    parameters =plan.get(i);
+//                    parameters =plan.get(i);
+                    parameters =plan;
                     Champion championForTheMove =new Champion();
 
                     parameters.substring(1,3);
@@ -283,6 +288,8 @@ ArrayList<String> plan = new ArrayList<String>();
 
                     {
 
+
+
                         System.out.println("Attack move must be runing right now ");
 
                         String parametersA = new String();
@@ -292,11 +299,15 @@ ArrayList<String> plan = new ArrayList<String>();
                         Champion Attacker =new Champion();
                         Champion Target =new Champion();
 
-                        parametersA =plan.get(i);
+//                        parametersA =plan.get(i);
+                        parametersA =plan;
+
                         parametersA.substring(1,4);
 
+
+
                         for(Champion c : p1.getArenaChampions()){
-                            if(c.getChampionName() != null && c.getChampionName().substring(0,3).contains(parametersA.substring(1,4)))
+                            if(c.getChampionName() != null && c.getChampionName().substring(0,3).equals(parametersA.substring(1,4)))
                             {
                                 Attacker=c;
                                 championIsHere1 =true;
@@ -308,8 +319,11 @@ ArrayList<String> plan = new ArrayList<String>();
 
                             System.err.println("Something went wrong maybe your attacker champion got killed !!! :( ");
                         }
+
+                        System.out.println("champions on arena " +arena.getAllChampionsOnArena());
+
                         for(Champion c : arena.getAllChampionsOnArena()){
-                            if(c.getChampionName() != null && c.getChampionName().substring(0,3).contains(parametersA.substring(4,7)))
+                            if(c.getChampionName() != null && c.getChampionName().substring(0,3).equals(parametersA.substring(4,7)))
                             {
                                 Target=c;
                                 championIsHere =true;
@@ -348,7 +362,8 @@ ArrayList<String> plan = new ArrayList<String>();
 
                     Champion championToUseAbility =new Champion();
 
-                    parametersB =plan.get(i);
+//                    parametersB =plan.get(i);
+                    parametersB =plan;
                     parametersB.substring(1,4);
                     for(Champion c : p1.getArenaChampions()){
                         if(c.getChampionName() != null && c.getChampionName().substring(0,3).contains(parametersB.substring(1,4)))
@@ -394,11 +409,11 @@ ArrayList<String> plan = new ArrayList<String>();
             }
 
 
+        return done;
 
         }
 
-return done;
-    }
+
 
 
 
