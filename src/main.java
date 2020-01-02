@@ -2,11 +2,21 @@ import Arena.Arena;
 import Game.*;
 
 import java.util.Random;
-//import UnassignedClasses.Arena;
+//import UnassignedClas6ses.Arena;
 
 public class main {
 
+   static int  sum = 0 ;
 
+    public  static  int factory (int i){
+        System.out.println(i);
+        if(i==0){
+            return 1 ;
+
+        }
+        sum= i*factory(i-1);
+        return sum;
+    }
     static Random r = new Random() ;
 
 
@@ -88,6 +98,9 @@ public class main {
         public static final String CYAN_BACKGROUND_BRIGHT = "\033[0;106m";  // CYAN
         public static final String WHITE_BACKGROUND_BRIGHT = "\033[0;107m";   // WHITE
     }
+
+
+
     public static void main(String[] args) {
         System.out.println("\\033[31mHELLO WORLD!");
         System.out.println(ConsoleColors.YELLOW + "RED COLORED"  +ConsoleColors.BLACK+ " 1");
@@ -98,9 +111,9 @@ public class main {
 
 
 
-        for(int i=0; i<5 ; i++){
-        System.out.println(getRandom(1,4));
-        }
+//        for(int i=0; i<5 ; i++){
+//        System.out.println(getRandom(1,4));
+//        }
 
 
     }

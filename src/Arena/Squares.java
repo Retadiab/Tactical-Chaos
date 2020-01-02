@@ -28,6 +28,17 @@ public class Squares {
     private int y;
     SquaresState state;
 
+    public SquaresType getType() {
+        return type;
+    }
+
+    public void setType(SquaresType type) {
+        this.type = type;
+    }
+
+    SquaresType type;
+
+
     public Squares(int i , int j ) {
         x = i ;
         y = j ;

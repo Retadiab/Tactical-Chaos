@@ -16,10 +16,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 import java.util.Scanner;
 
-public class consoleGame extends Game{
-
+public class consoleGame extends Game {
 
 
     public class ConsoleColors {
@@ -60,7 +60,7 @@ public class consoleGame extends Game{
     }
 
 
-    static Scanner WayOfPlaying =new Scanner(System.in);
+    static Scanner WayOfPlaying = new Scanner(System.in);
     private ArrayList<Player> players = new ArrayList<Player>();
 
 //    ArrayList<Player> playersForPhase2 = new ArrayList<Player>();
@@ -69,11 +69,11 @@ public class consoleGame extends Game{
     @Override
     public void initGame() {
         System.out.println();
-        System.out.println(ConsoleColors.YELLOW+"=======================================================================================================================");
-        System.out.println(ConsoleColors.PURPLE_BOLD+"\t\t\t\t\t\t\t\t\tWelcome To Tactical Chaos Console Game");
-        System.out.println(ConsoleColors.YELLOW+"======================================================================================================================="+ConsoleColors.RESET);
+        System.out.println(ConsoleColors.YELLOW + "=======================================================================================================================");
+        System.out.println(ConsoleColors.PURPLE_BOLD + "\t\t\t\t\t\t\t\t\tWelcome To Tactical Chaos Console Game");
+        System.out.println(ConsoleColors.YELLOW + "=======================================================================================================================" + ConsoleColors.RESET);
 
-        System.out.println(ConsoleColors.PURPLE_UNDERLINED+"Please choose the way of playing: "+ConsoleColors.RESET);
+        System.out.println(ConsoleColors.PURPLE_UNDERLINED + "Please choose the way of playing: " + ConsoleColors.RESET);
         System.out.println("#1 \t One console player against bots. ");
         System.out.println("#2 \t Bots against each other: ");
 
@@ -88,7 +88,7 @@ public class consoleGame extends Game{
 //        }
 
         this.arena = new Arena();
-        TacticalChaosTM t = new TacticalChaosTM(this.players,wayOfPlaying);
+        TacticalChaosTM t = new TacticalChaosTM(this.players, wayOfPlaying);
 
 //        printArena();
 
@@ -99,19 +99,18 @@ public class consoleGame extends Game{
 
 
     @Override
-    public boolean GameEnd(ArrayList<Player> playersOfTheGame){
+    public boolean GameEnd(ArrayList<Player> playersOfTheGame) {
 
-        if(playersOfTheGame.size()>1)
-        {
+        if (playersOfTheGame.size() > 1) {
 
 
-            for (Iterator<Player> iterator = playersOfTheGame.iterator(); iterator.hasNext();) {
+            for (Iterator<Player> iterator = playersOfTheGame.iterator(); iterator.hasNext(); ) {
                 Player p = iterator.next();
 //                if (p.isEmpty()) {
 //                    // Remove the current element from the iterator and the list.
 //                }
 
-                if(p.getArenaChampions().size()==0){
+                if (p.getArenaChampions().size() == 0) {
 
                     iterator.remove();
                 }
@@ -131,12 +130,10 @@ public class consoleGame extends Game{
 //
 //            }
             return false;
-        }
-
-        else {
+        } else {
             for (Player p : playersOfTheGame) {
                 System.out.println("End of the Game! >>>>>>>");
-                System.out.println("Player" +p.getPlayerIndex()+"the name ");
+                System.out.println("Player" + p.getPlayerIndex() + "the name ");
             }
             return true;
         }
@@ -145,71 +142,84 @@ public class consoleGame extends Game{
 
 
     @Override
-    public void ApplyMove(Player p) throws IllegalSquare, IllegalGameMove {
+    public void ApplyMove(Player p) {
 
     }
 
     @Override
-    public Player takeTurns(ArrayList<Player> p,ArrayList<Player> tempPlayers) {
-        Player pl =getRandomPlayer(p);
-        if(tempPlayers.contains(pl)){
-            takeTurns(p,tempPlayers);
+    public Player takeTurns(ArrayList<Player> p, ArrayList<Player> tempPlayers) {
 
-        }
-        else {
+        System.out.println("all players" + p);
+        System.out.println("temp players" + tempPlayers);
+
+        Player pl = getRandomPlayer(p);
+
+        if (tempPlayers.contains(pl)) {
+            System.out.println("contains");
+            takeTurns(p, tempPlayers);
+
+        } else {
+            System.out.println("all players in else" + p);
+            System.out.println("temp players in else" + tempPlayers);
+
+            System.err.println("player to add" + pl);
+
 
             tempPlayers.add(pl);
         }
+
+
         return pl;
 
     }
 
 
+    public class TacticalChaosTM extends RoundManager {
 
-
-    public  class TacticalChaosTM extends RoundManager {
-
-        ArrayList<Round> rounds =new ArrayList<Round>();
+        ArrayList<Round> rounds = new ArrayList<Round>();
         ArrayList<Player> x = new ArrayList<Player>();
         ArrayList<Player> arsa = new ArrayList<Player>();
 
-        public void PropagateMove(Champion sourceChampion , Champion targetChampion ){
-            gamestate= GameState.runningGame;
-
+        public void PropagateMove(Champion sourceChampion, Champion targetChampion) {
+            gamestate = GameState.runningGame;
 
 
         }
 
 
+        public TacticalChaosTM(ArrayList<Player> playersOfTheGame, int wayOfPlaying) {
 
-        public TacticalChaosTM(ArrayList<Player> playersOfTheGame,int wayOfPlaying) {
+            boolean isRound = false;
+            ArrayList<ArrayList<String>> plansOfTheRound = new ArrayList<ArrayList<String>>();
+            arena.printArena();
 
-            boolean isRound =false;
-             ArrayList<ArrayList<String>> plansOfTheRound = new ArrayList<ArrayList<String>>();
             ////************************************phase 1***********************************
 
-            for(Player p : playersOfTheGame) {
+            for (Player p : playersOfTheGame) {
 
-                if(wayOfPlaying == 1){
-                    boolean consolePlayerGotTurn=false;
+                if (wayOfPlaying == 1) {
+                    boolean consolePlayerGotTurn = false;
                     int counter = 0;
                     int counter1 = 0;
 
 
+                    if (p == playersOfTheGame.get(0)) {
 
 
-                    if(p == playersOfTheGame.get(0)){
-
-
-                        System.out.println(ConsoleColors.BLUE_BOLD+"Welcome to Phase 1. "+ConsoleColors.RESET);
+                        System.out.println(ConsoleColors.BLUE_BOLD + "Welcome to Phase 1. " + ConsoleColors.RESET);
                         while (counter < 9) {
                             counter = counter + 1;
 
 
                             System.out.println(ConsoleColors.PURPLE_UNDERLINED + "Phase 1 is running, please choose your movement: " + ConsoleColors.RESET);
                             Planning planningPhase1 = new Planning();
-                            isRound = planningPhase1.getChampionChoiceFromPhase1(planningPhase1.printPlanningListPhase1(false), p, arena, playersOfTheGame,wayOfPlaying,false);
+                            try {
+                                isRound = planningPhase1.getChampionChoiceFromPhase1(planningPhase1.printPlanningListPhase1(false), p, arena, playersOfTheGame, wayOfPlaying, false);
+                            } catch (Exception e) {
+                                System.out.println("ENTER VALUES AGAIN:: ");
+                                isRound = planningPhase1.getChampionChoiceFromPhase1(planningPhase1.printPlanningListPhase1(false), p, arena, playersOfTheGame, wayOfPlaying, false);
 
+                            }
                             if (isRound) {
                                 rounds.add(planningPhase1);
                             }
@@ -217,67 +227,62 @@ public class consoleGame extends Game{
 
                         }
 
-                    }
+                    } else {
+                        //planning moves of the bots
+                        System.out.println(ConsoleColors.BLUE_BOLD + "Welcome to Phase 1. " + ConsoleColors.RESET);
 
-                        else {
-                            //planning moves of the bots
-                            System.out.println(ConsoleColors.BLUE_BOLD+"Welcome to Phase 1. "+ConsoleColors.RESET);
+                        Planning planningPhase1 = new Planning();
+                        isRound = planningPhase1.AutoPlayerChoicesForPhase1(p, arena, playersOfTheGame);
 
-                                Planning planningPhase1 = new Planning();
-                                isRound=planningPhase1.AutoPlayerChoicesForPhase1( p, arena, playersOfTheGame);
-
-                                if (isRound) {
-                                    rounds.add(planningPhase1);
-                                    rounds.add(planningPhase1);
-                                    rounds.add(planningPhase1);
-                                    rounds.add(planningPhase1);
-                                    rounds.add(planningPhase1);
-                                    rounds.add(planningPhase1);
-                                    rounds.add(planningPhase1);
-                                    rounds.add(planningPhase1);
-                                    rounds.add(planningPhase1);
-                                }
-                                System.out.println("Rounds print " + rounds.size());
-                                counter1++;
+                        if (isRound) {
+                            rounds.add(planningPhase1);
+                            rounds.add(planningPhase1);
+                            rounds.add(planningPhase1);
+                            rounds.add(planningPhase1);
+                            rounds.add(planningPhase1);
+                            rounds.add(planningPhase1);
+                            rounds.add(planningPhase1);
+                            rounds.add(planningPhase1);
+                            rounds.add(planningPhase1);
+                        }
+                        System.out.println("Rounds print " + rounds.size());
+                        counter1++;
 
 
                         System.out.println("Rounds print " + rounds.size());
 
                     }
-                }
-
-
-                else {
+                } else {
                     //planning moves of the bots
 
                     int counter = 0;
-                    System.out.println(ConsoleColors.BLUE_BOLD+"Welcome to Phase 1. "+ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.BLUE_BOLD + "Welcome to Phase 1. " + ConsoleColors.RESET);
 
-                        counter=counter+1;
-                            Planning planningPhase1 = new Planning();
-                            isRound=planningPhase1.AutoPlayerChoicesForPhase1( p, arena, playersOfTheGame);
+                    counter = counter + 1;
+                    Planning planningPhase1 = new Planning();
+                    isRound = planningPhase1.AutoPlayerChoicesForPhase1(p, arena, playersOfTheGame);
 
-                            if (isRound) {
-                                rounds.add(planningPhase1);
-                                rounds.add(planningPhase1);
-                                rounds.add(planningPhase1);
-                                rounds.add(planningPhase1);
-                                rounds.add(planningPhase1);
-                                rounds.add(planningPhase1);
-                                rounds.add(planningPhase1);
-                                rounds.add(planningPhase1);
-                                rounds.add(planningPhase1);
-                            }
-                            System.out.println("Rounds print " + rounds.size());
+                    if (isRound) {
+                        rounds.add(planningPhase1);
+                        rounds.add(planningPhase1);
+                        rounds.add(planningPhase1);
+                        rounds.add(planningPhase1);
+                        rounds.add(planningPhase1);
+                        rounds.add(planningPhase1);
+                        rounds.add(planningPhase1);
+                        rounds.add(planningPhase1);
+                        rounds.add(planningPhase1);
+                    }
+                    System.out.println("Rounds print " + rounds.size());
 
-
-                }
 
                 }
 
-            System.out.println(ConsoleColors.YELLOW_BOLD+"==============================================================================================================================================="+ ConsoleColors.RESET);
-                System.out.println(ConsoleColors.PURPLE_BOLD+"\t\t\t\t\tThe Battle Field with all champions on it: "+ ConsoleColors.RESET);
-            System.out.println(ConsoleColors.YELLOW_BOLD+"==============================================================================================================================================="+ ConsoleColors.RESET);
+            }
+
+            System.out.println(ConsoleColors.YELLOW_BOLD + "===============================================================================================================================================" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.PURPLE_BOLD + "\t\t\t\t\tThe Battle Field with all champions on it: " + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.YELLOW_BOLD + "===============================================================================================================================================" + ConsoleColors.RESET);
 
             arena.printAllChampionsInTheArena();
 
@@ -285,60 +290,70 @@ public class consoleGame extends Game{
             ////************************************END!!!!!! phase 1***********************************
 
 
-
             ////************************************phase 2***********************************
 
 
-                  int counterForTheGame =0 ;
-                    while ((!GameEnd(playersOfTheGame) ) || (counterForTheGame == playersOfTheGame.size()*11 )) {
-                        Planning plan = new Planning();
-                        for (Player p : playersOfTheGame) {
-                            ArrayList<String> planForEachPlayer = new ArrayList<String>();
+            int counterForTheGame = 0;
+            while ((!GameEnd(playersOfTheGame)) || (counterForTheGame == playersOfTheGame.size() * 11)) {
+                Planning plan = new Planning();
+                for (Player p : playersOfTheGame) {
+                    ArrayList<String> planForEachPlayer = new ArrayList<String>();
 
-                            for (Champion c : p.getArenaChampions()) {
-                                //do the moves for each champion
-                                String s = new String();
-                                System.out.println(ConsoleColors.YELLOW + "=====================================================" + ConsoleColors.RESET);
-                                System.out.println(ConsoleColors.GREEN + "Choose one move for champion " + c.championName + ConsoleColors.RESET);
-                                System.out.println(ConsoleColors.YELLOW + "=====================================================" + ConsoleColors.RESET);
-                                        System.err.println("Please choose your plan: ");
+                    for (Champion c : p.getArenaChampions()) {
+                        //do the moves for each champion
+                       int countOfPlans=0;
 
-                                s = plan.getChampionChoiceFromPhase2(plan.printPlanningListPhase2MovesList(), p, arena, playersOfTheGame, c,wayOfPlaying);
-//                                System.err.println("the move as string" + s);
-                                planForEachPlayer.add(s);
-//                                System.err.println("conent of palnofeachplayer:" + planForEachPlayer);
-                            }
-                            plansOfTheRound.add(planForEachPlayer);
-//                            System.err.println("conent of Plans:" );
-//                            System.out.println("1" +plansOfTheRound.get(0));
-//                            System.out.println("2" +plansOfTheRound.get(1));
+                        while(countOfPlans < 1){
 
-                            int counter = 0;
-                            while (counter != 3) {
-                                plan.getChampionChoiceFromPhase1(plan.printPlanningListPhase1(true), p, arena, playersOfTheGame,wayOfPlaying,true);
+                            String s = new String();
+                            System.out.println(ConsoleColors.YELLOW + "=====================================================" + ConsoleColors.RESET);
+                            System.out.println(ConsoleColors.GREEN + "Choose one move for champion " + c.championName + ConsoleColors.RESET);
+                            System.out.println(ConsoleColors.YELLOW + "=====================================================" + ConsoleColors.RESET);
+//                            System.err.println("Please choose your plan: ");
 
-                                //do the buy and sell and place moves
-                                counter++;
-                            }
+                            s = plan.getChampionChoiceFromPhase2(plan.printPlanningListPhase2MovesList(), p, arena, playersOfTheGame, c, wayOfPlaying);
+//                            System.err.println("the move as string" + s);
+                            planForEachPlayer.add(s);
+                            countOfPlans++;
 
                         }
 
+//                                System.err.println("conent of palnofeachplayer:" + planForEachPlayer);
+                    }
+
+
+                    plansOfTheRound.add(planForEachPlayer);
+
+
+//                            int counter = 0;
+//                            while (counter != 3) {
+//                                plan.getChampionChoiceFromPhase1(plan.printPlanningListPhase1(true), p, arena, playersOfTheGame,wayOfPlaying,true);
+//
+//                                //do the buy and sell and place moves
+//                                counter++;
+//                            }
+
+                }
+                System.err.println("conent of Plans:");
+                System.out.println("1" + plansOfTheRound.get(0));
+                System.out.println("2" + plansOfTheRound.get(1));
 
 
 //********************************************************executing phase*******************************************************************\\
-                        ArrayList<Player> tempPlayers = new ArrayList<Player>();
-
-                            Player p = takeTurns(playersOfTheGame,tempPlayers);
-                            ExecuteMove executeMove = new ExecuteMove();
-                            executeMove.executeMove(plansOfTheRound.get(p.getPlayerIndex()-1),arena,p,playersOfTheGame,wayOfPlaying);
+                ArrayList<Player> tempPlayers = new ArrayList<Player>();
 
 
-
-
-
-
-
-
+//                            Player p = takeTurns(playersOfTheGame,tempPlayers);
+//
+//                            System.out.println("player to execute move"+p);
+//                for (int j = 1; j <= playersOfTheGame.size(); j++) {
+//
+//
+//                    ExecuteMove executeMove = new ExecuteMove();
+//                    executeMove.executeMove(plansOfTheRound.get(j - 1), arena, playersOfTheGame.get(j - 1), playersOfTheGame, wayOfPlaying);
+//
+//
+//                }
 
 
 //********************************************************end of executing phase*******************************************************************\\
@@ -349,17 +364,17 @@ public class consoleGame extends Game{
 //
 //            }
 
-                        counterForTheGame = counterForTheGame +1;
-                        System.out.println("END OF PHASE 2");
+                counterForTheGame = counterForTheGame + 1;
+                System.out.println("END OF PHASE 2");
 
 
-                        ////************************************END!!!!!! phase 2***********************************
+                ////************************************END!!!!!! phase 2***********************************
 
-                    }
+            }
 
             for (Player p : playersOfTheGame) {
                 System.out.println("End of the Game! >>>>>>>");
-                System.out.println("Player" +p.getPlayerIndex()+"the name ");
+                System.out.println("Player" + p.getPlayerIndex() + "the name ");
             }
 
 
@@ -369,16 +384,11 @@ public class consoleGame extends Game{
         }
 
 
-
-
-
-
-
-
         public TacticalChaosTM() {
 
 
         }
+
         public ArrayList<Player> getX() {
             return x;
         }
@@ -407,9 +417,9 @@ public class consoleGame extends Game{
 //    }
 
 
-    public static void main(String[] args) throws FileNotFoundException , IOException {
+    public static void main(String[] args) throws FileNotFoundException, IOException {
         consoleGame c = new consoleGame();
-//        System.setIn(new FileInputStream("test.txt"));
+
 
     }
 }

@@ -37,7 +37,7 @@ public class Champion {
     private float Mana;
     public int x ;
     public int y ;
-
+    public boolean dead = false;
     public int getPlayerId() {
         return playerId;
     }
@@ -69,6 +69,8 @@ public class Champion {
          this.championClass2 = null;
          this.championClass3 = null;
          this.Mana=this.ManaStart;
+         this.dead=false;
+
 
      }
      public Champion(
@@ -113,7 +115,7 @@ public class Champion {
          this.championAbility = championAbility1;
          this.Mana=this.ManaStart;
          this.championLevel = 1;
-
+         this.dead=false;
      }
 
 
@@ -164,6 +166,7 @@ public class Champion {
         this.championId = championId1;
         this.Mana=this.ManaStart;
         this.championLevel=1;
+        this.dead=false;
 
     }
 

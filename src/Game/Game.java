@@ -54,7 +54,7 @@ public abstract class Game {
                             arena.printArena(p);
 
     }
-    abstract public void ApplyMove(Player p) throws IllegalSquare, IllegalGameMove;
+    abstract public void ApplyMove(Player p);
     abstract public Player takeTurns(ArrayList<Player> players,ArrayList<Player> TempPlayers);
 
 
